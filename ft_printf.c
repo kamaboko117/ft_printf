@@ -6,7 +6,7 @@
 /*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/04 17:45:14 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:59:42 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -59,7 +59,10 @@ void	nbr(va_list *list)
 
 void	nbrhex(va_list *list)
 {
-	while (list);
+	int	nbr;
+
+	nbr = va_arg(*list, int);
+	ft_putnbrbase_fd(nbr, "0123456789ABCDEF", 1);
 }
 
 int		ft_printf(const char *format, ...)
