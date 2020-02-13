@@ -6,7 +6,7 @@
 /*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 18:23:37 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/04 18:54:14 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/02/13 16:41:09 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		check_base(char *base)
 	return (1);
 }
 
-static void		ft_recurr(int n, int fd, int baselen, char *base)
+static void		ft_recurr(long n, int fd, int baselen, char *base)
 {
 	char a;
 
@@ -56,7 +56,7 @@ static void		ft_recurr(int n, int fd, int baselen, char *base)
 	}
 }
 
-void			ft_putnbrbase_fd(int n, char *base, int fd)
+void			ft_putnbrbase_fd(long n, char *base, int fd)
 {
 	if (check_base(base))
 	{

@@ -6,7 +6,7 @@
 /*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/13 15:36:03 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:50:48 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,14 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int		zeropad(va_list *list, const char *format)
-{
-	int	i;
-	int	len;
-	int	tmp;
-	int	nbr;
+#include <stdio.h>
 
-	nbr = va_arg(*list, int);
-	i = ft_atoi(format);
-	tmp = ft_numlen(i, 10) + 1;
-	if (nbr < 0)
-	{
-		write(1, "-", 1);
-		i--;
-		nbr = -nbr;
-	}
+int		dotpad(int nbr, const char *format, int i, int sign)
+{
+	int len;
+	int tmp;
+
+	tmp = ft_numlen(i, 10) + 2 + sign;
 	if (format[tmp] == 'd' || format[tmp] == 'i' || format[tmp] == 'u')
 	{
 		len = ft_numlen(nbr, 10);
@@ -49,34 +41,44 @@ int		zeropad(va_list *list, const char *format)
 	}
 	return (tmp + 1);
 }
-int		dotpad(va_list *list, const char *form)
-{
-	int	nbr;
-	int	i;
 
-	nbr = va_arg(*list, int);
-	i = ft_atoi(form + 1);
+int		zeropad(int nbr, const char *format, int i)
+{
+	int tmp;
+	printf("i: %i\n", i);
+	tmp = ft_numlen(i, 10) + 1;
 	if (nbr < 0)
 	{
 		write(1, "-", 1);
+		i--;
 		nbr = -nbr;
 	}
-	while (i-- > 0)
-		write(1, "0", 1);
-return 0;	
+	tmp = dotpad(nbr, format, i, 0);
+	return (tmp);
 }
 
 int		pad(va_list *list, const char *form)
 {
 	int	ret;
+	int nbr;
 	
+	nbr = va_arg(*list, int);
 	ret = 0;
-	if (form[0] == '.')
-		ret = dotpad(list, form);
-	if (form[0] == '0' && form[1] == '.')
-		ret = dotpad(list, form + 1);
+	printf("nbr: %i\n", nbr);
+	if (form[0] == '.' || (form[0] == '0' && form[1] == '.'))
+	{
+		if (nbr < 0)
+		{
+			write(1, "-", 1);
+			nbr = -nbr;
+		}
+		if (form[0] == '.')
+			ret = dotpad(nbr, form, ft_atoi(form + 1), 0);
+		else
+			ret = dotpad(nbr, form + 1, ft_atoi(form + 2), -1) + 1;
+	}
 	else
-		ret = zeropad(list, form);
+		ret = zeropad(nbr, form, ft_atoi(form));
 	return (ret);
 }
 

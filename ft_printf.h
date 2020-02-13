@@ -6,7 +6,7 @@
 /*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/11 21:11:33 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:50:56 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	str(va_list	*list);
 void	ptr(va_list *list);
 void	nbr(va_list *list);
 void	nbrhex(va_list *list);
+void	*tabinit();
 
 #endif

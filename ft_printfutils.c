@@ -6,7 +6,7 @@
 /*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/11 21:01:15 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/02/13 16:42:22 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
+#include <stdio.h>
 void	chr(va_list *list)
 {
 	int chr;
@@ -32,10 +33,10 @@ void	str(va_list *list)
 
 void	ptr(va_list *list)
 {
-	void	*ptr;
+	intptr_t	ptr;
 
-	ptr = va_arg(*list, void *);
-	ft_putnbrbase_fd((intptr_t)ptr, "0123456789abcdef", 1);
+	ptr = va_arg(*list, intptr_t);
+	ft_putnbrbase_fd(ptr, "0123456789abcdef", 1);
 }
 
 void	nbr(va_list *list)
