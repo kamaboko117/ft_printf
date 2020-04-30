@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 14:38:51 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/04/30 15:07:45 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 int	ft_printf(const char *form, ...);
 int	find_index(char c);
-void	chr(va_list *list, const char *form);
-void	str(va_list	*list, const char *form);
-void	ptr(va_list *list, const char *form);
-void	nbr(va_list *list, const char *form);
-void	nbrhex(va_list *list, const char *form);
-void	nbrhexcaps(va_list *list, const char *form);
-void	(**tabinit(void))(va_list *, const char*);
-void	zeropad(va_list *list, const char *form);
-void	dotpad(va_list *list, const char *form);
+int	chr(va_list *list, const char *form);
+int	str(va_list	*list, const char *form);
+int	ptr(va_list *list, const char *form);
+int	nbr(va_list *list, const char *form);
+int	nbrhex(va_list *list, const char *form);
+int	nbrhexcaps(va_list *list, const char *form);
+int	(**tabinit(void))(va_list *, const char*);
+int	zeropad(va_list *list, const char *form);
+int	dotpad(va_list *list, const char *form);
 
 #endif

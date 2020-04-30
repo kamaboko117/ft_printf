@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 14:37:03 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/04/30 15:08:51 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 
-void	(**tabinit(void))(va_list *, const char *)
+int	(**tabinit(void))(va_list *, const char *)
 {
-	void (**f)(va_list *, const char *);
+	int (**f)(va_list *, const char *);
 	
 	if (!(f = malloc(8 * sizeof *f)))
 		return(NULL);
@@ -48,30 +48,32 @@ int		find_index(char c)
 	return (-1);
 }
 
-void	nbrhexcaps(va_list *list, const char *form)
+int	nbrhexcaps(va_list *list, const char *form)
 {
 	int	nbr;
 
 	(void)form;
 	nbr = va_arg(*list, int);
 	ft_putnbrbase_fd(nbr, "0123456789ABCDEF", 1);
+	return(ft_numlen(nbr, 16));
 }
 
-void	nbrhex(va_list *list, const char *form)
+int	nbrhex(va_list *list, const char *form)
 {
 	int	nbr;
 
 	(void)form;
 	nbr = va_arg(*list, int);
 	ft_putnbrbase_fd(nbr, "0123456789abcdef", 1);
+	return(ft_numlen(nbr, 16));
 }
 
-void	zeropad(va_list *list, const char *form)
+int	zeropad(va_list *list, const char *form)
 {
 	va_list cpy;
 	int 	tmp;
 	int		len;
-	void	(**f)(va_list *, const char *);
+	int	(**f)(va_list *, const char *);
 	int		i;
 
 	tmp = 0;
@@ -88,10 +90,12 @@ void	zeropad(va_list *list, const char *form)
 	i = find_index(form[tmp]);
 	if (i != -1)
 		(*f[i])(&cpy, form);
+	return (1);
 }
 
-void	dotpad(va_list *list, const char *form)
+int	dotpad(va_list *list, const char *form)
 {
 	(void)list;
 	(void)form;
+	return (1);
 }
