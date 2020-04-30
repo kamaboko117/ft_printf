@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 13:46:19 by asaboure          #+#    #+#             */
-/*   Updated: 2019/11/23 16:26:34 by asaboure         ###   ########.fr       */
+/*   Created: 2020/04/28 18:48:45 by asaboure          #+#    #+#             */
+/*   Updated: 2020/04/30 14:40:17 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-char	*ft_strrchr(const char *s, int c)
+int	main(void)
 {
-	size_t	i;
+	void	*cursed = malloc(42);
+	char	*s = "nique ta race jo";
+	int		x = 713;
 
-	i = 0;
-	while (s[i])
-		i++;
-	while (1)
-	{
-		if (s[i] == c)
-			return (((char *)s) + i);
-		if (i == 0)
-			break ;
-		i--;
-	}
-	return (NULL);
+	ft_printf("test %p %X %s\n", cursed, x, s);
+	printf("test %p %X %s\n", cursed, x, s);
 }

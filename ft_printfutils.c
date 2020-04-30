@@ -39,6 +39,7 @@ void	ptr(va_list *list, const char *form)
 
 	(void)form;
 	ptr = va_arg(*list, intptr_t);
+	write(1, "0x", 2);
 	ft_putnbrbase_fd(ptr, "0123456789abcdef", 1);
 }
 

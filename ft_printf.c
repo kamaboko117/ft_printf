@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/03/03 19:22:22 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/04/29 16:36:47 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int		ft_printf(const char *form, ...)
 			tmp = find_index(form[i]);
 			if (tmp != -1)
 				(*f[tmp])(&list, form);
-			else
-				write(1, &form[i], 1);
 		}
 		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
 			write(1, &form[i], 1);
