@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 15:16:51 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/06 21:22:44 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int		ft_printf(const char *form, ...)
 	{
 		if (i != 0 && form[i - 1] == '%' && form[i] != '%')
 		{
-			tmp = find_index(form[i]);
-			if (tmp != -1)
-				len += (*f[tmp])(&list, form) - 2;
+			if ((tmp = find_index(form[i])) != -1)
+				len += (*f[tmp])(&list, form + i) - 2;
 		}
 		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
 			write(1, &form[i], 1);
+		while (tmp == 9 && form[i] >= '0' && form[i] <= '9')
+			i++;
 		i++;
 	}
 	len += i;

@@ -6,13 +6,14 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 15:08:51 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/06 21:09:44 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "ft_printf.h"
 
 int	(**tabinit(void))(va_list *, const char *)
@@ -29,6 +30,7 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[5] = nbr;
 	f[6] = nbrhex;
 	f[7] = nbrhexcaps;
+	f[9] = zeropad;
 	return (f);
 }
 
@@ -78,19 +80,20 @@ int	zeropad(va_list *list, const char *form)
 
 	tmp = 0;
 	f = tabinit();
-	va_copy(*list, cpy);
+	va_copy(cpy, *list);
 	if (form[1] == '.')
 		dotpad(&cpy, form + 1);
 	while (form[tmp +1]  == '0')
 		tmp++;
 	len = ft_atoi(form + tmp);
 	tmp += ft_numlen(len, 10);
-	while (len--)
+	while (len-- > 0)
 		write(1, "0", 1);
-	i = find_index(form[tmp]);
+	i = find_index(form[tmp + 1]);
 	if (i != -1)
 		(*f[i])(&cpy, form);
-	return (1);
+	va_end(cpy);
+	return (tmp);
 }
 
 int	dotpad(va_list *list, const char *form)
