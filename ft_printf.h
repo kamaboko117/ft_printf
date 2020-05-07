@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 15:07:45 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:46:39 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	nbrhexcaps(va_list *list, const char *form);
 int	(**tabinit(void))(va_list *, const char*);
 int	zeropad(va_list *list, const char *form);
 int	dotpad(va_list *list, const char *form);
+int	leftpad(va_list *list, const char *form);
 
 #endif

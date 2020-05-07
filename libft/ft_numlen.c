@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 18:09:43 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/11 19:39:14 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:20:28 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_numlen(long n, int base)
+int	ft_numlen(long n, int base)
 {
 	int	ret;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 18:38:07 by asaboure          #+#    #+#             */
-/*   Updated: 2020/02/13 16:41:27 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:21:13 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
 char			*ft_strnstr(const char *haystack, const char *needle,
 							size_t len);
 int				ft_atoi(const char *str);
-unsigned int	ft_numlen(long n, int base);
+int				ft_numlen(long n, int base);
 
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);

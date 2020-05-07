@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/06 21:09:44 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 19:44:48 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[5] = nbr;
 	f[6] = nbrhex;
 	f[7] = nbrhexcaps;
+	f[8] = leftpad;
 	f[9] = zeropad;
 	return (f);
 }
 
-int		find_index(char c)
+int	find_index(char c)
 {
 	int		i;
 	char	*tab;
@@ -72,27 +73,27 @@ int	nbrhex(va_list *list, const char *form)
 
 int	zeropad(va_list *list, const char *form)
 {
-	va_list cpy;
-	int 	tmp;
-	int		len;
-	int	(**f)(va_list *, const char *);
-	int		i;
+	int tmp;
+	int	len;
+	int	nb;
 
 	tmp = 0;
-	f = tabinit();
-	va_copy(cpy, *list);
+	nb = va_arg(*list, int);
 	if (form[1] == '.')
-		dotpad(&cpy, form + 1);
+		dotpad(list, form + 1);
 	while (form[tmp +1]  == '0')
 		tmp++;
 	len = ft_atoi(form + tmp);
 	tmp += ft_numlen(len, 10);
-	while (len-- > 0)
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+		len--;
+	}
+	while (len-- > ft_numlen(nb, 10))
 		write(1, "0", 1);
-	i = find_index(form[tmp + 1]);
-	if (i != -1)
-		(*f[i])(&cpy, form);
-	va_end(cpy);
+	ft_putnbr_fd(nb, 1);
 	return (tmp);
 }
 
@@ -101,4 +102,26 @@ int	dotpad(va_list *list, const char *form)
 	(void)list;
 	(void)form;
 	return (1);
+}
+
+int	leftpad(va_list *list, const char *form)
+{
+	int	tmp;
+	int	i;
+	int	(**f)(va_list *, const char *);
+	int	len;
+	int ret;
+
+	f = tabinit();
+	i = 1;
+	len = ft_atoi(form + i);
+	ret = len;
+	
+	while (form[i] >= '0' && form[i] <= '9')
+		i++;
+	tmp = find_index(form[i]);
+	len -= (*f[tmp])(list, form + i);
+	while(len-- > 0)
+		write(1, " ", 1);
+	return (ret);
 }
