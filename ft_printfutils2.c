@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/07 19:44:48 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 20:19:20 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[7] = nbrhexcaps;
 	f[8] = leftpad;
 	f[9] = zeropad;
+	f[10] = dotpad;
 	return (f);
 }
 
@@ -99,8 +100,20 @@ int	zeropad(va_list *list, const char *form)
 
 int	dotpad(va_list *list, const char *form)
 {
+	int i;
+	int	tmp;
+	int	len;
+
+	i = 1;
+	len = ft_atoi(form + i);
+	while (form[i] >= '0' && form[i] <= '9')
+		i++;
+	tmp = find_index(form[i]);
+	if (tmp == 1)
+	{
+		ft_putmaxstr(va_arg(*list, char *), len);
+	}
 	(void)list;
-	(void)form;
 	return (1);
 }
 
@@ -124,4 +137,16 @@ int	leftpad(va_list *list, const char *form)
 	while(len-- > 0)
 		write(1, " ", 1);
 	return (ret);
+}
+
+void	ft_putmaxstr(const char *s, int len)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && i < len)
+	{
+		write(1, &s[i], 1);
+		i++;
+	}		
 }
