@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/07 20:22:13 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 00:58:10 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_printf(const char *form, ...)
 		}
 		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
 			write(1, &form[i], 1);
-		while ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9') || form[i] == '-' || form[i] == '.'))
+		while ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9') || form[i] == '-' || form[i] == '.' || form[i] == '*'))
 			i++;
 		i++;
 	}

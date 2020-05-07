@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/04/30 15:18:04 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/07 22:20:37 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int	nbr(va_list *list, const char *form)
 	(void)form;
 	nbr = va_arg(*list, int);
 	ft_putnbr_fd(nbr, 1);
+	if (nbr < 0)
+		return (ft_numlen(nbr, 10) + 1);
 	return(ft_numlen(nbr, 10));
 }
