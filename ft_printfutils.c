@@ -6,19 +6,17 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/07 22:20:37 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 21:03:01 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
 #include "libft/libft.h"
+#include "ft_printf.h"
 
-#include <stdio.h>
 int	chr(va_list *list, const char *form)
 {
 	int chr;
-	
+
 	(void)form;
 	chr = va_arg(*list, int);
 	ft_putchar_fd(chr, 1);
@@ -55,5 +53,25 @@ int	nbr(va_list *list, const char *form)
 	ft_putnbr_fd(nbr, 1);
 	if (nbr < 0)
 		return (ft_numlen(nbr, 10) + 1);
-	return(ft_numlen(nbr, 10));
+	return (ft_numlen(nbr, 10));
+}
+
+int	(**tabinit(void))(va_list *, const char *)
+{
+	int (**f)(va_list *, const char *);
+
+	if (!(f = malloc(11 * sizeof(*f))))
+		return (NULL);
+	f[0] = chr;
+	f[1] = str;
+	f[2] = ptr;
+	f[3] = nbr;
+	f[4] = nbr;
+	f[5] = nbr;
+	f[6] = nbrhex;
+	f[7] = nbrhexcaps;
+	f[8] = leftpad;
+	f[9] = zeropad;
+	f[10] = dotpad;
+	return (f);
 }

@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 18:52:44 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 21:27:59 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-#include <stdio.h>
+int	checkcondition(const char *form, int tmp)
+{
+	int	i;
 
-int		ft_printf(const char *form, ...)
+	i = 0;
+	if ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9')
+		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
+		return (1);
+	return (0);
+}
+
+int	ft_printf(const char *form, ...)
 {
 	int		(**f)(va_list *, const char *);
 	va_list	list;
@@ -38,7 +47,7 @@ int		ft_printf(const char *form, ...)
 		}
 		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
 			write(1, &form[i], 1);
-		while ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9') || form[i] == '-' || form[i] == '.' || form[i] == '*'))
+		while (checkcondition(form + i, tmp))
 			i++;
 	}
 	len += i;
