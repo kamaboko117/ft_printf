@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 00:08:49 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 17:52:08 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int nbrhex(va_list *list, const char *form);
 int nbrhexcaps(va_list *list, const char *form);
 int (**tabinit(void))(va_list *, const char*);
 int zeropad(va_list *list, const char *form);
-int zeropaddec(va_list *list, const char*);
-int zeropadhex(va_list *list, const char*);
-int zeropadhexc(va_list *list, const char*);
+int zeropaddec(int mode, va_list *list, const char*);
+int zeropadhex(int mode, va_list *list, const char*);
+int zeropadhexc(int mode, va_list *list, const char*);
 int	dotpad(va_list *list, const char *form);
 int dotpadnbr(va_list *list, int len);
 int dotpadhex(va_list *list, int len);

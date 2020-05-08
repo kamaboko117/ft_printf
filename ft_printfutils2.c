@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 00:56:50 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 18:22:49 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,41 @@ int	zeropad(va_list *list, const char *form)
 {
 	int i;
 	int tmp;
+	int	mode;
 
-	if (form[1] == '.')
+	mode = 0;
+	i = 1;
+	if (form[i] == '.')
 		dotpad(list, form + 1);
-	i = 0;
+	if (form[i] == '*')
+	{
+		mode = 1;
+		i++;
+	}
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
 	if (tmp >= 3 && tmp <= 5)
-		return (zeropaddec(list, form));
+		return (zeropaddec(mode, list, form));
 	if (tmp == 6)
-		return (zeropadhex(list, form));
+		return (zeropadhex(mode, list, form));
 	if (tmp == 7)
-		return (zeropadhexc(list, form));
+		return (zeropadhexc(mode, list, form));
 	return (0);
 }
 
-int	zeropaddec(va_list *list, const char *form)
+int	zeropaddec(int mode, va_list *list, const char *form)
 {
 	int	nb;
 	int	len;
 	int	ret;
 	int	i;
 
+	if (mode == 1)
+		len = va_arg(*list, int);
+	else
+		len = ft_atoi(form + 1);
 	nb = va_arg(*list, int);
-	len = ft_atoi(form + 1);
 	ret = len - ft_numlen(len, 10) - 1;
 	i = 1;
 	if (nb < 0)
@@ -119,15 +129,18 @@ int	zeropaddec(va_list *list, const char *form)
 		return (ft_numlen(nb, 10) - i -1);
 }
 
-int	zeropadhex(va_list *list, const char *form)
+int	zeropadhex(int mode, va_list *list, const char *form)
 {
 	int	nb;
 	int	len;
 	int	ret;
 	int	i;
 
+	if (mode == 1)
+		len = va_arg(*list, int);
+	else
+		len = ft_atoi(form + 1);
 	nb = va_arg(*list, int);
-	len = ft_atoi(form + 1);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;
 	if (nb < 0)
@@ -146,15 +159,18 @@ int	zeropadhex(va_list *list, const char *form)
 		return (ft_numlen(nb, 16) - i -1);
 }
 
-int	zeropadhexc(va_list *list, const char *form)
+int	zeropadhexc(int mode,va_list *list, const char *form)
 {
 	int	nb;
 	int	len;
 	int	ret;
 	int	i;
 
+	if (mode == 1)
+		len = va_arg(*list, int);
+	else
+		len = ft_atoi(form + 1);
 	nb = va_arg(*list, int);
-	len = ft_atoi(form + 1);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;
 	if (nb < 0)
@@ -180,7 +196,13 @@ int	dotpad(va_list *list, const char *form)
 	int	len;
 
 	i = 1;
-	len = ft_atoi(form + i);
+	if(form[i] == '*')
+	{
+		len = va_arg(*list, int);
+		i++;
+	}
+	else
+		len = ft_atoi(form + i);
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
@@ -265,15 +287,20 @@ int	leftpad(va_list *list, const char *form)
 	len = ft_atoi(form + i);
 	if (form[i++] ==  '*')
 		len = va_arg(*list, int);
-	ret = len - 3;
+	ret = len;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
 	len -= (*f[tmp])(list, form + i);
+	while(tmp == 10 && (form[i] == '.' || form[i] == '*' || (form[i] >= '0' && form[i] <= '9')))
+	{
+		len--;
+		i++;
+	}
 	while(len-- > 0)
 		write(1, " ", 1);
 	if (len < 0)
-		return (ret - len);
+		return (ret - len - i - 1);
 	return (ret);
 }
 

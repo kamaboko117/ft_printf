@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 00:58:10 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/05/08 18:52:44 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		ft_printf(const char *form, ...)
 	int		len;
 
 	f = tabinit();
-	i = 0;
+	i = -1;
 	len = 0;
 	va_start(list, form);
-	while (form[i])
+	while (form[++i])
 	{
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%' && form[i] != '%')
@@ -40,7 +40,6 @@ int		ft_printf(const char *form, ...)
 			write(1, &form[i], 1);
 		while ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9') || form[i] == '-' || form[i] == '.' || form[i] == '*'))
 			i++;
-		i++;
 	}
 	len += i;
 	return (len);
