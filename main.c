@@ -18,10 +18,10 @@ int	main(void)
 {
 	//void	*cursed = malloc(42);
 	//char	*s = "nique ta race jo";
-	int		x = 713752;
-
-	printf("[%d]\n", ft_printf("kamaboko117 %0*d kamaboko117\n", 7, x));
-	printf("[%d]\n", printf("kamaboko117 %0*d kamaboko117\n", 7, x));
+	//int		x = 713752;
+	//char	*form = NULL;
+	printf("[%d]\n", ft_printf("%5i", 75));
+	printf("[%d]\n", printf("%5i", 75));
 
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);

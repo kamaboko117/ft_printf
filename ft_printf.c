@@ -13,6 +13,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	checkcondition(const char *form, int tmp)
 {
@@ -37,7 +38,7 @@ int	ft_printf(const char *form, ...)
 	i = -1;
 	len = 0;
 	va_start(list, form);
-	while (form[++i])
+	while (form && form[++i])
 	{
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%' && form[i] != '%')
@@ -47,6 +48,7 @@ int	ft_printf(const char *form, ...)
 		}
 		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
 			write(1, &form[i], 1);
+		(form[i - 1] == '%' && form[i] == '%') ? len-- : len;
 		while (checkcondition(form + i, tmp))
 			i++;
 	}

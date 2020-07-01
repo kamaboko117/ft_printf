@@ -51,11 +51,11 @@ int	zeropad(va_list *list, const char *form)
 		i++;
 	tmp = find_index(form[i]);
 	if (tmp >= 3 && tmp <= 5)
-		return (zeropaddec(mode, list, form));
+		return (zeropaddec(mode, list, form, '0'));
 	if (tmp == 6)
-		return (zeropadhex(mode, list, form));
+		return (zeropadhex(mode, list, form, '0'));
 	if (tmp == 7)
-		return (zeropadhexc(mode, list, form));
+		return (zeropadhexc(mode, list, form, '0'));
 	return (0);
 }
 

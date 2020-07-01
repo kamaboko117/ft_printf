@@ -73,5 +73,96 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[8] = leftpad;
 	f[9] = zeropad;
 	f[10] = dotpad;
+	f[11] = pad;
+	f[12] = pad;
+	f[13] = pad;
+	f[14] = pad;
+	f[15] = pad;
+	f[16] = pad;
+	f[17] = pad;
+	f[18] = pad;
+	f[19] = pad;
 	return (f);
 }
+
+int	pad(va_list *list, const char *form)
+{
+	int i;
+	int tmp;
+	int len;
+
+	len = ft_atoi(form);
+	i = ft_numlen(len, 10);
+	if (form[i] == '.')
+		dotpad(list, form + 1);
+	tmp = find_index(form[i]);
+	if (tmp >= 3 && tmp <= 5)
+		return (paddec(list, len));
+	if (tmp == 6)
+		return (padhex(list, len));
+	if (tmp == 7)
+		return (padhexc(list, len));
+	return (0);
+}
+
+int	paddec(va_list *list, int len)
+{
+	int	nb;
+	int	ret;
+	int	i;
+
+	nb = va_arg(*list, int);
+	ret = len - ft_numlen(len, 10) - 1;
+	i = 1;
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+		len--;
+		i = 0;
+	}
+	while (len-- > ft_numlen(nb, 10))
+		write(1, " ", 1);
+	ft_putnbr_fd(nb, 1);
+	if (ret >= ft_numlen(nb, 10) - i)
+		return (ret);
+	else
+		return (ft_numlen(nb, 10) - i);
+}
+
+int	padhex(va_list *list, int len)
+{
+	int	nb;
+	int	ret;
+	int	i;
+
+	nb = va_arg(*list, int);
+	ret = len - ft_numlen(len, 16) - 1;
+	i = 1;
+	while (len-- > ft_numlen(nb, 16))
+		write(1, " ", 1);
+	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
+	if (ret >= ft_numlen(nb, 16) - i)
+		return (ret);
+	else
+		return (ft_numlen(nb, 16) - i);
+}
+
+int	padhexc(va_list *list, int len)
+{
+	int	nb;
+	int	ret;
+	int	i;
+
+	nb = va_arg(*list, int);
+	ret = len - ft_numlen(len, 16) - 1;
+	i = 1;
+	while (len-- > ft_numlen(nb, 16))
+		write(1, " ", 1);
+	ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
+	if (ret >= ft_numlen(nb, 16) - i)
+		return (ret);
+	else
+		return (ft_numlen(nb, 16) - i);
+}
+

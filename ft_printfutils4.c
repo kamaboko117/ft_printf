@@ -17,7 +17,7 @@ int	find_index(char c)
 	int		i;
 	char	*tab;
 
-	tab = "cspdiuxX-0.*";
+	tab = "cspdiuxX-0.*123456789";
 	i = 0;
 	while (tab[i])
 	{
