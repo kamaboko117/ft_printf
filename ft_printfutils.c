@@ -6,12 +6,13 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 21:03:01 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:53:19 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	chr(va_list *list, const char *form)
 {
@@ -97,11 +98,11 @@ int	pad(va_list *list, const char *form)
 		dotpad(list, form + 1);
 	tmp = find_index(form[i]);
 	if (tmp >= 3 && tmp <= 5)
-		return (paddec(list, len));
+		return (paddec(list, len) + 1);
 	if (tmp == 6)
-		return (padhex(list, len));
+		return (padhex(list, len) + 1);
 	if (tmp == 7)
-		return (padhexc(list, len));
+		return (padhexc(list, len) + 1);
 	return (0);
 }
 
@@ -116,13 +117,14 @@ int	paddec(va_list *list, int len)
 	i = 1;
 	if (nb < 0)
 	{
-		write(1, "-", 1);
 		nb = -nb;
 		len--;
 		i = 0;
 	}
 	while (len-- > ft_numlen(nb, 10))
 		write(1, " ", 1);
+	if (i == 0)
+		write(1, "-", 1);
 	ft_putnbr_fd(nb, 1);
 	if (ret >= ft_numlen(nb, 10) - i)
 		return (ret);

@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 21:27:57 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:44:36 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	zeropad(va_list *list, const char *form)
 		i++;
 	tmp = find_index(form[i]);
 	if (tmp >= 3 && tmp <= 5)
-		return (zeropaddec(mode, list, form, '0'));
+		return (zeropaddec(mode, list, form));
 	if (tmp == 6)
-		return (zeropadhex(mode, list, form, '0'));
+		return (zeropadhex(mode, list, form));
 	if (tmp == 7)
-		return (zeropadhexc(mode, list, form, '0'));
+		return (zeropadhexc(mode, list, form));
 	return (0);
 }
 

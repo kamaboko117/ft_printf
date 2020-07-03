@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 21:27:59 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/07/03 13:51:16 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	checkcondition(const char *form, int tmp)
 	int	i;
 
 	i = 0;
-	if ((tmp >= 8 && tmp <= 10) && ((form[i] >= '0' && form[i] <= '9')
+	if ((tmp >= 8 && tmp <= 19) && ((form[i] >= '0' && form[i] <= '9')
 		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
 		return (1);
 	return (0);
