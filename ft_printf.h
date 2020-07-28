@@ -46,5 +46,6 @@ int	        padhex(va_list *list, int len);
 int	        padhexc(va_list *list, int len);
 int         percent(va_list *list, const char *form);
 int         padpercent(va_list *list, int len);
+int         zeropadpercent(int mode, va_list *list, const char *form);
 
 #endif

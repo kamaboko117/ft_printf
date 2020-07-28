@@ -93,7 +93,7 @@ int	percent(va_list *list, const char *form)
 	(void)list;
 	(void)form;
 	write(1, "%", 1);
-	return(2);
+	return(1);
 }
 
 int	pad(va_list *list, const char *form)

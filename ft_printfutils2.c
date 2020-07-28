@@ -50,6 +50,8 @@ int	zeropad(va_list *list, const char *form)
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
+	if (tmp == 21)
+		return zeropadpercent(mode, list, form);
 	if (tmp >= 3 && tmp <= 5)
 		return (zeropaddec(mode, list, form));
 	if (tmp == 6)
@@ -57,6 +59,25 @@ int	zeropad(va_list *list, const char *form)
 	if (tmp == 7)
 		return (zeropadhexc(mode, list, form));
 	return (0);
+}
+
+int zeropadpercent(int mode, va_list *list, const char *form)
+{
+	int i;
+	int len;
+
+	(void)mode;
+	(void)list;
+	(void)form;
+	len = ft_atoi(form + 1);
+	i = 1;
+	while (i < len)
+	{
+		write(1, "0", 1);
+		i++;
+	}
+	write(1, "%", 1);
+	return (len - 2);
 }
 
 int	dotpad(va_list *list, const char *form)
