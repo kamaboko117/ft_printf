@@ -20,8 +20,8 @@ int	main(void)
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*form = NULL;
-	printf("[%d]\n", ft_printf("%32s", "abc"));
-	printf("[%d]\n", printf("%32s", "abc"));
+	printf("[%d]\n", ft_printf("%5s", "goes over"));
+	printf("[%d]\n", printf("%5s", "goes over"));
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);
 }
