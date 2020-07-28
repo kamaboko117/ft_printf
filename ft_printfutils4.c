@@ -111,6 +111,8 @@ int	leftpadend(int ret, int i, int len, const char *form)
 		len--;
 		i++;
 	}
+	if (tmp == 21)
+		len++;
 	while (len-- > 0)
 		write(1, " ", 1);
 	if (len < 0)

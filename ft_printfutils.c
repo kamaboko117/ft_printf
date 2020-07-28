@@ -61,7 +61,7 @@ int	(**tabinit(void))(va_list *, const char *)
 {
 	int (**f)(va_list *, const char *);
 
-	if (!(f = malloc(11 * sizeof(*f))))
+	if (!(f = malloc(22 * sizeof(*f))))
 		return (NULL);
 	f[0] = chr;
 	f[1] = str;
@@ -107,7 +107,6 @@ int	pad(va_list *list, const char *form)
 	if (form[i] == '.')
 		dotpad(list, form + 1);
 	tmp = find_index(form[i]);
-	printf("%d\n", tmp);
 	if (tmp >= 3 && tmp <= 5)
 		return (paddec(list, len) + 1);
 	if (tmp == 6)
