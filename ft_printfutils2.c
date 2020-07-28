@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	nbrhexcaps(va_list *list, const char *form)
 {
@@ -128,7 +129,8 @@ int	leftpad(va_list *list, const char *form)
 	ret = len;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
-	tmp = find_index(form[i]);
+	if ((tmp = find_index(form[i])) == - 1)
+		return (0);
 	len -= (*f[tmp])(list, form + i);
 	return (leftpadend(ret, i, len, form));
 }
