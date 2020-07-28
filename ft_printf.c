@@ -41,12 +41,12 @@ int	ft_printf(const char *form, ...)
 	while (form && form[++i])
 	{
 		tmp = 0;
-		if (i != 0 && form[i - 1] == '%' && form[i] != '%')
+		if (i != 0 && form[i - 1] == '%')
 		{
 			if ((tmp = find_index(form[i])) != -1)
 				len += (*f[tmp])(&list, form + i) - 2;
 		}
-		else if (form[i] != '%' || (form[i - 1] == '%' && form[i] == '%'))
+		else if (form[i] != '%')
 			write(1, &form[i], 1);
 		(form[i - 1] == '%' && form[i] == '%') ? len-- : len;
 		while (checkcondition(form + i, tmp))

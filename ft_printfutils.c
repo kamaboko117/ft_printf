@@ -83,7 +83,17 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[17] = pad;
 	f[18] = pad;
 	f[19] = pad;
+	f[20] = pad;
+	f[21] = percent;
 	return (f);
+}
+
+int	percent(va_list *list, const char *form)
+{
+	(void)list;
+	(void)form;
+	write(1, "%", 1);
+	return(2);
 }
 
 int	pad(va_list *list, const char *form)
@@ -97,13 +107,31 @@ int	pad(va_list *list, const char *form)
 	if (form[i] == '.')
 		dotpad(list, form + 1);
 	tmp = find_index(form[i]);
+	printf("%d\n", tmp);
 	if (tmp >= 3 && tmp <= 5)
 		return (paddec(list, len) + 1);
 	if (tmp == 6)
 		return (padhex(list, len) + 1);
 	if (tmp == 7)
 		return (padhexc(list, len) + 1);
+	if (tmp == 21)
+		return (padpercent(list, len));
 	return (0);
+}
+
+int padpercent(va_list *list, int len)
+{
+	int i;
+
+	i = 1;
+	(void)list;
+	while(i < len)
+	{
+		write(1, " ", 1);
+		i++;
+	}
+	write(1, "%", 1);
+	return(len - 1);
 }
 
 int	paddec(va_list *list, int len)
