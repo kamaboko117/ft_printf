@@ -30,6 +30,11 @@ int	str(va_list *list, const char *form)
 
 	(void)form;
 	str = va_arg(*list, char *);
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return(6);
+	}
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
@@ -145,7 +150,7 @@ int	paddotpad(va_list *list, const char *form, int len)
 	}
 	if (size < ret)
 		return (ret - strnumlen(form + 1));
-	return (ft_strlen(str) - strnumlen(form + 1));
+	return (size - strnumlen(form + 1));
 }
 
 int	padstr(va_list *list, int len)
