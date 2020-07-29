@@ -105,7 +105,7 @@ int	pad(va_list *list, const char *form)
 	len = ft_atoi(form);
 	i = ft_numlen(len, 10);
 	if (form[i] == '.')
-		dotpad(list, form + 1);
+		return (paddotpad(list, form + i, len) - (i + 1));
 	tmp = find_index(form[i]);
 	if (tmp == 1)
 		return (padstr(list, len) + 1);
@@ -118,6 +118,32 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
+}
+
+int	paddotpad(va_list *list, const char *form, int len)
+{
+	int		size;
+	char	*str;
+	int		i;
+	int		ret;
+
+	ret = len;
+	i = 0;
+	str = va_arg(*list, char*);
+	size = ft_atoi(form + 1);
+	if (ft_strlen(str) < (unsigned long)ft_atoi(form + 1))
+		size = ft_strlen(str);
+	while (len > size)
+	{
+		write(1, " ", 1);
+		len--;
+	}
+	while(str[i] && i < size)
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (ret - strnumlen(form + 1));
 }
 
 int	padstr(va_list *list, int len)
