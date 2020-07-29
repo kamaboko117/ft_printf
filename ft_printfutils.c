@@ -143,7 +143,9 @@ int	paddotpad(va_list *list, const char *form, int len)
 		write(1, &str[i], 1);
 		i++;
 	}
-	return (ret - strnumlen(form + 1));
+	if (size < ret)
+		return (ret - strnumlen(form + 1));
+	return (ft_strlen(str) - strnumlen(form + 1));
 }
 
 int	padstr(va_list *list, int len)
