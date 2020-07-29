@@ -162,6 +162,15 @@ int	padstr(va_list *list, int len)
 	i = 0;
 	rlen = len;
 	str = va_arg(*list, char *);
+	if (str == NULL)
+	{
+		while(i++ + 6 < rlen)
+			write(1, " ", 1);
+		write(1, "(null)", 6);
+		if (rlen > 6)
+			return(len - ft_numlen(len, 10) - 1);
+		return(6 - ft_numlen(len, 10) - 1);
+	}
 	if (rlen > ft_strlen(str))
 	{
 		while(i++ < rlen - ft_strlen(str))
