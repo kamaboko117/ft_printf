@@ -25,10 +25,15 @@ int	nbrhexcaps(va_list *list, const char *form)
 
 int	nbrhex(va_list *list, const char *form)
 {
-	int	nbr;
+	unsigned int	nbr;
 
 	(void)form;
-	nbr = va_arg(*list, int);
+	nbr = va_arg(*list, unsigned int);
+	if (nbr == 4294967295)
+	{
+		write(1, "ffffffff", 8);
+		return (8);
+	}
 	ft_putnbrbase_fd(nbr, "0123456789abcdef", 1);
 	return (ft_numlen(nbr, 16));
 }
