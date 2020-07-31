@@ -19,9 +19,9 @@ int	main(void)
 	//void	*cursed = malloc(42);
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
-	//char	*s_hidden = "hi low";
-	//printf("[%d]\n", ft_printf("%3.s", NULL));
-	printf("[%d]\n", printf("%3.s", NULL));
+	char	*s_hidden = "hi low";
+	printf("[%d]\n", ft_printf("%3.s", s_hidden));
+	printf("[%d]\n", printf("%3.s", s_hidden));
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);

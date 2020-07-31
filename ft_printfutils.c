@@ -127,6 +127,26 @@ int	pad(va_list *list, const char *form)
 
 int	paddotpad(va_list *list, const char *form, int len)
 {
+	int tmp;
+	int i;
+
+	i = strnumlen(form + 1);
+	tmp = find_index(form[i + 1]);
+	if (tmp == 1)
+		return (paddotpadstr(list, form + i, len));
+	if (tmp >= 3 && tmp <= 5)
+		return (paddotpaddec(va_arg(*list, int), form + i, len) + 1);
+	if (tmp == 6)
+		return (padhex(list, len) + 1);
+	if (tmp == 7)
+		return (padhexc(list, len) + 1);
+	if (tmp == 21)
+		return (padpercent(list, len) + 1);
+	return (0);
+}
+
+int	paddotpadstr(va_list *list, const char *form, int len)
+{
 	int		size;
 	char	*str;
 	int		i;
@@ -136,8 +156,8 @@ int	paddotpad(va_list *list, const char *form, int len)
 	i = 0;
 	if(!(str = va_arg(*list, char*)))
 		str = "(null)";
-	size = ft_atoi(form + 1);
-	if (ft_strlen(str) < (unsigned long)ft_atoi(form + 1))
+	size = ft_atoi(form);
+	if (ft_strlen(str) < (unsigned long)ft_atoi(form))
 		size = ft_strlen(str);
 	while (len > size)
 	{
@@ -150,8 +170,8 @@ int	paddotpad(va_list *list, const char *form, int len)
 		i++;
 	}
 	if (size < ret)
-		return (ret - strnumlen(form + 1));
-	return (size - strnumlen(form + 1));
+		return (ret - strnumlen(form));
+	return (size - strnumlen(form));
 }
 
 int	padstr(va_list *list, int len)
@@ -197,6 +217,29 @@ int padpercent(va_list *list, int len)
 	write(1, "%", 1);
 	return(len - 1);
 }
+int paddotpaddec(int nb, const char *form, int len)
+{
+	int zerolen;
+	int i;
+	int j;
+	int sign;
+
+	sign = nb < 0 ? 1 : 0;
+	zerolen = ft_atoi(form);
+	zerolen = zerolen < ft_numlen(nb, 10) ? ft_numlen(nb, 10) : zerolen;
+	if (sign == 1)
+		nb = -nb;
+	i = 0;
+	while (i++ + sign < len - zerolen)
+		write(1, " ", 1);
+	if (sign == 1)
+		write(1, "-", 1);
+	j = 0;
+	while (j++  < zerolen - ft_numlen(nb,10))
+		write(1, "0", 1);
+	ft_putnbr_fd(nb, 1);
+	return (i + zerolen + sign - strnumlen(form));
+}
 
 int	paddec(va_list *list, int len)
 {
@@ -221,7 +264,7 @@ int	paddec(va_list *list, int len)
 	if (ret >= ft_numlen(nb, 10) - i)
 		return (ret);
 	else
-		return (ft_numlen(nb, 10) - i);
+		return (ft_numlen(nb, 10) - i - 1);
 }
 
 int	padhex(va_list *list, int len)
