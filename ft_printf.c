@@ -22,9 +22,11 @@ int	checkcondition(const char *form, int tmp)
 	i = 0;
 	if (form[i + 1] == '\0')
 		return(0);
-	if ((tmp >= 8 && tmp <= 19) && ((form[i] >= '0' && form[i] <= '9')
+	if ((tmp >= 8 && tmp <= 20) && ((form[i] >= '0' && form[i] <= '9')
 		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
+	{
 		return (1);
+	}
 	return (0);
 }
 

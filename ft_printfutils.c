@@ -134,7 +134,8 @@ int	paddotpad(va_list *list, const char *form, int len)
 
 	ret = len;
 	i = 0;
-	str = va_arg(*list, char*);
+	if(!(str = va_arg(*list, char*)))
+		str = "(null)";
 	size = ft_atoi(form + 1);
 	if (ft_strlen(str) < (unsigned long)ft_atoi(form + 1))
 		size = ft_strlen(str);

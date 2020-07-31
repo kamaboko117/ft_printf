@@ -101,7 +101,7 @@ int	dotpad(va_list *list, const char *form)
 		i++;
 	tmp = find_index(form[i]);
 	if (tmp == 1)
-		return (ft_putmaxstr(va_arg(*list, char *), len) - size - 1);
+		return (dotpadstr(list, len) - size - 1);
 	else if (tmp >= 3 && tmp <= 5)
 		return (dotpadnbr(list, len) - ft_numlen(len, 10) - 1);
 	else if (tmp == 6)
@@ -109,6 +109,15 @@ int	dotpad(va_list *list, const char *form)
 	else if (tmp == 7)
 		return (dotpadhexc(list, len) - ft_numlen(len, 10) - 1);
 	return (0);
+}
+int	dotpadstr(va_list *list, int len)
+{
+	char *str;
+
+	str = va_arg(*list, char*);
+	if (str == NULL)
+		return(ft_putmaxstr("(null)", len));
+	return(ft_putmaxstr(str, len));
 }
 
 int	strnumlen(const char *form)

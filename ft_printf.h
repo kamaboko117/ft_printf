@@ -50,5 +50,5 @@ int         zeropadpercent(int mode, va_list *list, const char *form);
 int         padstr(va_list *list, int len);
 int         strnumlen(const char *form);
 int         paddotpad(va_list *list, const char *form, int len);
-
+int         dotpadstr(va_list *list, int len);
 #endif
