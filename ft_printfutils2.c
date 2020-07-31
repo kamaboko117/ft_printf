@@ -43,6 +43,12 @@ int	zeropad(va_list *list, const char *form)
 	i = 1;
 	if (form[i] == '.')
 		dotpad(list, form + 1);
+	if (form[i] == '-')
+		return (leftpad(list, form));
+	while (form[i] >= '0' && form[i] <= '9')
+		if (form[1 + i++] == '.')
+			return (pad(list, form + 1) - 1);
+	i = 1;
 	if (form[i] == '*')
 	{
 		mode = 1;

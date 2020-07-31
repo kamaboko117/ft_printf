@@ -238,7 +238,7 @@ int paddotpaddec(int nb, const char *form, int len)
 	while (j++  < zerolen - ft_numlen(nb,10))
 		write(1, "0", 1);
 	ft_putnbr_fd(nb, 1);
-	return (i + zerolen + sign - strnumlen(form));
+	return (i + zerolen + sign - strnumlen(form) - 2);
 }
 
 int	paddec(va_list *list, int len)
