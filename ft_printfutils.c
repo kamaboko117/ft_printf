@@ -62,6 +62,18 @@ int	nbr(va_list *list, const char *form)
 	return (ft_numlen(nbr, 10));
 }
 
+int	nbru(va_list *list, const char *form)
+{
+	unsigned int	nbr;
+
+	(void)form;
+	nbr = va_arg(*list, unsigned int);
+	ft_putnbru_fd(nbr, 1);
+	if (nbr < 0)
+		return (ft_numlen(nbr, 10) + 1);
+	return (ft_numlen(nbr, 10));
+}
+
 int	(**tabinit(void))(va_list *, const char *)
 {
 	int (**f)(va_list *, const char *);
@@ -73,7 +85,7 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[2] = ptr;
 	f[3] = nbr;
 	f[4] = nbr;
-	f[5] = nbr;
+	f[5] = nbru;
 	f[6] = nbrhex;
 	f[7] = nbrhexcaps;
 	f[8] = leftpad;
@@ -237,7 +249,10 @@ int paddotpaddec(int nb, const char *form, int len)
 	j = 0;
 	while (j++  < zerolen - ft_numlen(nb,10))
 		write(1, "0", 1);
-	ft_putnbr_fd(nb, 1);
+	if (ft_atoi(form) != 0)
+		ft_putnbr_fd(nb, 1);
+	else
+		write(1, " ", 1);
 	return (i + zerolen + sign - strnumlen(form) - 2);
 }
 

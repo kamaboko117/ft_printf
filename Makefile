@@ -53,7 +53,8 @@ LIBFTSRCS =	libft/ft_memccpy.c													\
 			libft/ft_isprint.c													\
 			libft/ft_itoa.c														\
 			libft/ft_putnbrbase_fd.c											\
-			libft/ft_numlen.c
+			libft/ft_numlen.c													\
+			libft/ft_putnbru_fd.c
 
 LIBFTOBJS =${LIBFTSRCS:.c=.o}
 

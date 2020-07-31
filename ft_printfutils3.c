@@ -67,6 +67,8 @@ int	dotpadnbr(va_list *list, int len)
 	int ret;
 	int	s;
 
+	if (len == 0)
+		return (0);
 	s = 0;
 	ret = len;
 	if ((nb = va_arg(*list, int)) < 0)
