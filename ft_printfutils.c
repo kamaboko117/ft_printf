@@ -127,7 +127,7 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 1)
 		return (padstr(list, len) + 1);
 	if (tmp == 2)
-		return (padptr(list, len));
+		return (padptr(list, len) - strnumlen(form) + 1);
 	if (tmp >= 3 && tmp <= 5)
 		return (paddec(list, len) + 1);
 	if (tmp == 6)
@@ -141,7 +141,7 @@ int	pad(va_list *list, const char *form)
 
 int	padptr(va_list *list, int len)
 {
-	int	ptr;
+	intptr_t	ptr;
 	int diff;
 	int	ret;
 
@@ -253,7 +253,7 @@ int padpercent(va_list *list, int len)
 	return(len - 1);
 }
 
-int	paddotpadptr(int nb, const char *form, int len)
+int	paddotpadptr(unsigned int nb, const char *form, int len)
 {
 	int	zerolen;
 	int	i;

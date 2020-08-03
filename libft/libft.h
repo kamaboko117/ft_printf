@@ -58,6 +58,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putnbru_fd(unsigned int n, int fd);
 void			ft_putnbrbase_fd(long n, char *base, int fd);
+void			ft_putnbrubase_fd(unsigned n, char *base, int fd);
 
 typedef struct	s_list
 {
