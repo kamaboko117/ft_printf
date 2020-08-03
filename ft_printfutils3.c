@@ -35,13 +35,15 @@ int	dotpadhexc(va_list *list, int len)
 	int	nb;
 	int	ret;
 
-	ret = len;
 	nb = va_arg(*list, int);
+	ret = len > ft_numlen(nb, 16) ? len : ft_numlen(nb, 16);
 	while (len > ft_numlen(nb, 16))
 	{
 		write(1, "0", 1);
 		len--;
 	}
+	if (len == 0 && nb == 0)
+		return(0);
 	ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
 	return (ret);
 }
@@ -58,6 +60,8 @@ int	dotpadhex(va_list *list, int len)
 		write(1, "0", 1);
 		len--;
 	}
+	if (len == 0 && nb == 0)
+		return(0);
 	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
 	return (ret);
 }

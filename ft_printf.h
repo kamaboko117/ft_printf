@@ -54,4 +54,5 @@ int         dotpadstr(va_list *list, int len);
 int         paddotpadstr(va_list *list, const char *form, int len);
 int         paddotpaddec(int nb, const char *form, int len);
 int	        nbru(va_list *list, const char *form);
+int         paddotpadhex(int nb, const char *form, int len, int mode);
 #endif

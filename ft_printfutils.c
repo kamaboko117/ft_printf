@@ -149,9 +149,9 @@ int	paddotpad(va_list *list, const char *form, int len)
 	if (tmp >= 3 && tmp <= 5)
 		return (paddotpaddec(va_arg(*list, int), form + i, len) + 1);
 	if (tmp == 6)
-		return (padhex(list, len) + 1);
+		return (paddotpadhex(va_arg(*list, unsigned int), form + i, len, 1) + 1);
 	if (tmp == 7)
-		return (padhexc(list, len) + 1);
+		return (paddotpadhex(va_arg(*list, unsigned int), form + i, len, 0) + 1);
 	if (tmp == 21)
 		return (padpercent(list, len) + 1);
 	return (0);
@@ -229,6 +229,29 @@ int padpercent(va_list *list, int len)
 	write(1, "%", 1);
 	return(len - 1);
 }
+
+int	paddotpadhex(int nb, const char *form, int len, int mode)
+{
+	int	zerolen;
+	int	i;
+	int j;
+	char	*base;
+
+	base = mode == 1 ? "0123456789abcdef" : "0123456789ABCDEF";
+	zerolen = ft_atoi(form) < ft_numlen(nb, 16) ? ft_numlen(nb, 16) : ft_atoi(form);
+	i = 0;
+	while (i++ < len - zerolen)
+		write(1, " ", 1);
+	j = 0;
+	while (j++ < zerolen - ft_numlen(nb, 16))
+		write(1, "0", 1);
+	if (ft_atoi(form) != 0)
+		ft_putnbrbase_fd(nb, base, 1);
+	else
+		write(1, " ", 1);
+	return (i + zerolen - strnumlen(form) - 2);
+}
+
 int paddotpaddec(int nb, const char *form, int len)
 {
 	int zerolen;
