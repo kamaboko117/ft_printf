@@ -116,9 +116,9 @@ int	dotpad(va_list *list, const char *form)
 	else if (tmp >= 3 && tmp <= 5)
 		return (dotpadnbr(list, len) - ft_numlen(len, 10) - size);
 	else if (tmp == 6)
-		return (dotpadhex(list, len) - ft_numlen(len, 10) - size);
+		return (dotpadhex(list, len) - ft_numlen(len, 10) - 1);
 	else if (tmp == 7)
-		return (dotpadhexc(list, len) - ft_numlen(len, 10) - size);
+		return (dotpadhexc(list, len) - ft_numlen(len, 10) - 1);
 	return (0);
 }
 int	dotpadstr(va_list *list, int len)

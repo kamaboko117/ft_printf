@@ -20,8 +20,8 @@ int	main(void)
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*s_hidden = "hi low";
-	printf("[%d]\n", ft_printf("%x", -54));
-	printf("[%d]\n", printf("%x", -54));
+	printf("[%d]\n", ft_printf("%.3x", 938862));
+	printf("[%d]\n", printf("%.3x", 938862));
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);

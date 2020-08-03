@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_putmaxstr(const char *s, int len)
 {
@@ -50,8 +51,8 @@ int	dotpadhex(va_list *list, int len)
 	int	nb;
 	int	ret;
 
-	ret = len;
 	nb = va_arg(*list, int);
+	ret = len > ft_numlen(nb, 16) ? len : ft_numlen(nb, 16);
 	while (len > ft_numlen(nb, 16))
 	{
 		write(1, "0", 1);

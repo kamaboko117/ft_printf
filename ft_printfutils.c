@@ -129,9 +129,9 @@ int	pad(va_list *list, const char *form)
 	if (tmp >= 3 && tmp <= 5)
 		return (paddec(list, len) + 1);
 	if (tmp == 6)
-		return (padhex(list, len) + 1);
+		return (padhex(list, len));
 	if (tmp == 7)
-		return (padhexc(list, len) + 1);
+		return (padhexc(list, len));
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
@@ -285,36 +285,36 @@ int	paddec(va_list *list, int len)
 int	padhex(va_list *list, int len)
 {
 	int	nb;
-	int	ret;
-	int	i;
+	int	diff;
+	int ret;
 
 	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 16) - 1;
-	i = 1;
+	diff = len - ft_numlen(len, 16) - 1;
+	ret = len;
 	while (len-- > ft_numlen(nb, 16))
 		write(1, " ", 1);
 	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
-	if (ret >= ft_numlen(nb, 16) - i)
-		return (ret);
+	if (diff >= ft_numlen(nb, 16) - 1)
+		return (ret - 1);
 	else
-		return (ft_numlen(nb, 16) - i);
+		return (ft_numlen(nb, 16) - 1);
 }
 
 int	padhexc(va_list *list, int len)
 {
 	int	nb;
-	int	ret;
-	int	i;
+	int	diff;
+	int ret;
 
 	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 16) - 1;
-	i = 1;
+	diff = len - ft_numlen(len, 16) - 1;
+	ret = len;
 	while (len-- > ft_numlen(nb, 16))
 		write(1, " ", 1);
 	ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
-	if (ret >= ft_numlen(nb, 16) - i)
-		return (ret);
+	if (diff >= ft_numlen(nb, 16) - 1)
+		return (ret - 1);
 	else
-		return (ft_numlen(nb, 16) - i);
+		return (ft_numlen(nb, 16) - 1);
 }
 
