@@ -167,6 +167,8 @@ int	paddotpad(va_list *list, const char *form, int len)
 	tmp = find_index(form[i + 1]);
 	if (tmp == 1)
 		return (paddotpadstr(list, form + i, len));
+	if (tmp == 2)
+		return (paddotpadptr(va_arg(*list, intptr_t), form + i, len) + 1);
 	if (tmp >= 3 && tmp <= 5)
 		return (paddotpaddec(va_arg(*list, int), form + i, len) + 1);
 	if (tmp == 6)
@@ -249,6 +251,25 @@ int padpercent(va_list *list, int len)
 	}
 	write(1, "%", 1);
 	return(len - 1);
+}
+
+int	paddotpadptr(int nb, const char *form, int len)
+{
+	int	zerolen;
+	int	i;
+	int j;
+
+	zerolen = ft_atoi(form) < ft_numlen(nb, 16) + 2 ? ft_numlen(nb, 16) + 2 : ft_atoi(form);
+	i = 0;
+	while (i++ <= len - zerolen)
+		write(1, " ", 1);
+	j = 0;
+	write(1, "0x", 2);
+	while (j++ < zerolen - ft_numlen(nb, 16) - 2)
+		write(1, "0", 1);
+	if (ft_atoi(form) != 0)
+		ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
+	return (i + zerolen - strnumlen(form) - 3);
 }
 
 int	paddotpadhex(int nb, const char *form, int len, int mode)
