@@ -15,10 +15,10 @@
 
 int	nbrhexcaps(va_list *list, const char *form)
 {
-	int	nbr;
+	unsigned int	nbr;
 
 	(void)form;
-	nbr = va_arg(*list, int);
+	nbr = va_arg(*list, unsigned int);
 	ft_putnbrbase_fd(nbr, "0123456789ABCDEF", 1);
 	return (ft_numlen(nbr, 16));
 }
@@ -29,11 +29,6 @@ int	nbrhex(va_list *list, const char *form)
 
 	(void)form;
 	nbr = va_arg(*list, unsigned int);
-	if (nbr == 4294967295)
-	{
-		write(1, "ffffffff", 8);
-		return (8);
-	}
 	ft_putnbrbase_fd(nbr, "0123456789abcdef", 1);
 	return (ft_numlen(nbr, 16));
 }
@@ -114,11 +109,11 @@ int	dotpad(va_list *list, const char *form)
 	if (tmp == 1)
 		return (dotpadstr(list, len) - size - 1);
 	else if (tmp >= 3 && tmp <= 5)
-		return (dotpadnbr(list, len) - ft_numlen(len, 10) - size);
+		return (dotpadnbr(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
 	else if (tmp == 6)
-		return (dotpadhex(list, len) - ft_numlen(len, 10) - 1);
+		return (dotpadhex(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
 	else if (tmp == 7)
-		return (dotpadhexc(list, len) - ft_numlen(len, 10) - 1);
+		return (dotpadhexc(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
 	return (0);
 }
 int	dotpadstr(va_list *list, int len)
