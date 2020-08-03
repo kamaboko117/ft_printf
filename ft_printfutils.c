@@ -126,6 +126,8 @@ int	pad(va_list *list, const char *form)
 	tmp = find_index(form[i]);
 	if (tmp == 1)
 		return (padstr(list, len) + 1);
+	if (tmp == 2)
+		return (padptr(list, len));
 	if (tmp >= 3 && tmp <= 5)
 		return (paddec(list, len) + 1);
 	if (tmp == 6)
@@ -135,6 +137,25 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
+}
+
+int	padptr(va_list *list, int len)
+{
+	int	ptr;
+	int diff;
+	int	ret;
+
+	ptr = va_arg(*list, intptr_t);
+	diff = len - (ft_numlen(ptr, 16) + 2);
+	ret = len;
+	while (len-- - 2 > ft_numlen(ptr, 16))
+		write(1, " ", 1);
+	write(1, "0x", 2);
+	ft_putnbrbase_fd(ptr, "0123456789abcdef", 1);
+	if (diff >= 0)
+		return (ret - 1);
+	else
+		return ((ft_numlen(ptr, 16) + 2) - 1);
 }
 
 int	paddotpad(va_list *list, const char *form, int len)

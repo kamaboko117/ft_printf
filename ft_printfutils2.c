@@ -108,6 +108,8 @@ int	dotpad(va_list *list, const char *form)
 	tmp = find_index(form[i]);
 	if (tmp == 1)
 		return (dotpadstr(list, len) - size - 1);
+	if (tmp == 2)
+		return (dotpadptr(list, len) - size - 1);
 	else if (tmp >= 3 && tmp <= 5)
 		return (dotpadnbr(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
 	else if (tmp == 6)

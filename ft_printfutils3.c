@@ -66,6 +66,25 @@ int	dotpadhex(va_list *list, int len)
 	return (ret);
 }
 
+int	dotpadptr(va_list *list, int len)
+{
+	int nb;
+	int ret;
+
+	nb = va_arg(*list, intptr_t);
+	ret = len > ft_numlen(nb, 16) + 2 ? len : ft_numlen(nb, 16);
+	while (len > ft_numlen(nb, 16))
+	{
+		write(1, "0", 1);
+		len--;
+	}
+	write(1, "0x", 2);
+	if (len == 0 && nb == 0)
+		return(2);
+	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
+	return (ret);
+}
+
 int	dotpadnbr(va_list *list, int len)
 {
 	int	nb;
