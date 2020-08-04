@@ -21,8 +21,8 @@ int	main(void)
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*s_hidden = "hi low";
-	printf("[%d]\n", ft_printf("%%*i 42 == |%*i|\n", 5, 42));
-	printf("[%d]\n", printf("%%*i 42 == |%*i|\n", 5, 42));
+	printf("[%d]\n", ft_printf("%*s", 32, "abc"));
+	printf("[%d]\n", printf("%*s", 32, "abc"));
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);
