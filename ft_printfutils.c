@@ -108,8 +108,12 @@ int	(**tabinit(void))(va_list *, const char *)
 int	percent(va_list *list, const char *form)
 {
 	(void)list;
-	(void)form;
 	write(1, "%", 1);
+	if (form[1])
+	{
+		write(1, &form[1], 1);
+		return(1);
+	}
 	return(1);
 }
 
@@ -119,11 +123,13 @@ int	pad(va_list *list, const char *form)
 	int tmp;
 	int len;
 
-	len = ft_atoi(form);
+	len = form[0] == '*' ? va_arg(*list, int) : ft_atoi(form);
 	i = ft_numlen(len, 10);
 	if (form[i] == '.')
 		return (paddotpad(list, form + i, len) - (i + 1));
 	tmp = find_index(form[i]);
+	if (tmp == 0)
+		return (padchr(list, len) - strnumlen(form));
 	if (tmp == 1)
 		return (padstr(list, len) + 1);
 	if (tmp == 2)
@@ -137,6 +143,19 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
+}
+
+int	padchr(va_list *list, int len)
+{
+	int	c;
+	int	i;
+
+	c = va_arg(*list, int);
+	i = 0;
+	while (i++ < len - 1)
+		write(1, " ", 1);
+	write(1, &c, 1);
+	return(i);
 }
 
 int	padptr(va_list *list, int len)

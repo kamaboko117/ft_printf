@@ -58,4 +58,5 @@ int         paddotpadhex(int nb, const char *form, int len, int mode);
 int         padptr(va_list *list, int len);
 int         dotpadptr(va_list *list, int len);
 int         paddotpadptr(unsigned int nb, const char *form, int len);
+int         padchr(va_list *list, int len);
 #endif

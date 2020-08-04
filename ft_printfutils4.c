@@ -40,7 +40,7 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	else
 		len = ft_atoi(form + 1);
 	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 10) - 1;
+	ret = len - 1;
 	i = 1;
 	if (nb < 0)
 	{
@@ -51,7 +51,7 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	}
 	while (len-- > ft_numlen(nb, 10))
 		write(1, "0", 1);
-	return (zeropaddecend(nb, ret, i));
+	return (zeropaddecend(nb, ret, i) - strnumlen(form + 1));
 }
 
 int	zeropadhex(int mode, va_list *list, const char *form)

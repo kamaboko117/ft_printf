@@ -115,8 +115,8 @@ int	dotpadnbr(va_list *list, int len)
 int	zeropaddecend(int nb, int ret, int i)
 {
 	ft_putnbr_fd(nb, 1);
-	if (ret >= ft_numlen(nb, 10) - i - 1)
+	if (ret >= ft_numlen(nb, 10) - i)
 		return (ret);
 	else
-		return (ft_numlen(nb, 10) - i - 1);
+		return (ft_numlen(nb, 10) - i);
 }

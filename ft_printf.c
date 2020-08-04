@@ -30,6 +30,26 @@ int	checkcondition(const char *form, int tmp)
 	return (0);
 }
 
+int	checkpercent(const char *form, int tmp)
+{
+	char	*str;
+	int		i;
+
+	str = "cspdiuxX-0.*123456789";
+	if (tmp == 21)
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (str[i] == form[1])
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+
+}
+
 int	ft_printf(const char *form, ...)
 {
 	int		(**f)(va_list *, const char *);
@@ -53,6 +73,8 @@ int	ft_printf(const char *form, ...)
 		else if (form[i] != '%')
 			write(1, &form[i], 1);
 		while (checkcondition(form + i, tmp))
+			i++;
+		if (checkpercent(form + i, tmp))
 			i++;
 	}
 	len += i;
