@@ -92,7 +92,6 @@ int	dotpad(va_list *list, const char *form)
 	int i;
 	int	tmp;
 	int	len;
-	int size;
 
 	i = 1;
 	if (form[i] == '*')
@@ -102,20 +101,19 @@ int	dotpad(va_list *list, const char *form)
 	}
 	else
 		len = ft_atoi(form + i);
-	size = strnumlen(form + i);
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
 	if (tmp == 1)
-		return (dotpadstr(list, len) - size - 1);
+		return (dotpadstr(list, len) - i);
 	if (tmp == 2)
-		return (dotpadptr(list, len) - size - 1);
+		return (dotpadptr(list, len) - i);
 	else if (tmp >= 3 && tmp <= 5)
-		return (dotpadnbr(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
+		return (dotpadnbr(list, len) - i);
 	else if (tmp == 6)
-		return (dotpadhex(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
+		return (dotpadhex(list, len) - i);
 	else if (tmp == 7)
-		return (dotpadhexc(list, len) - ft_numlen(len, 10) - (size == 0 ? 0 : 1));
+		return (dotpadhexc(list, len) - i);
 	return (0);
 }
 int	dotpadstr(va_list *list, int len)

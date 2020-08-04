@@ -135,7 +135,7 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 2)
 		return (padptr(list, len) - strnumlen(form) + 1);
 	if (tmp >= 3 && tmp <= 5)
-		return (paddec(list, len) + 1);
+		return (paddec(list, len, i));
 	if (tmp == 6)
 		return (padhex(list, len));
 	if (tmp == 7)
@@ -340,30 +340,30 @@ int paddotpaddec(int nb, const char *form, int len)
 	return (i + zerolen + sign - strnumlen(form) - 2);
 }
 
-int	paddec(va_list *list, int len)
+int	paddec(va_list *list, int len, int j)
 {
 	int	nb;
 	int	ret;
 	int	i;
 
 	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 10) - 1;
-	i = 1;
+	ret = len;
+	i = 0;
 	if (nb < 0)
 	{
 		nb = -nb;
 		len--;
-		i = 0;
+		i = 1;
 	}
 	while (len-- > ft_numlen(nb, 10))
 		write(1, " ", 1);
-	if (i == 0)
+	if (i == 1)
 		write(1, "-", 1);
 	ft_putnbr_fd(nb, 1);
-	if (ret >= ft_numlen(nb, 10) - i)
-		return (ret);
+	if (ret >= ft_numlen(nb, 10) + i)
+		return (ret - j);
 	else
-		return (ft_numlen(nb, 10) - i - 1);
+		return ((ft_numlen(nb, 10) + i) - j);
 }
 
 int	padhex(va_list *list, int len)

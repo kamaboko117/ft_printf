@@ -41,7 +41,7 @@ int			leftpad(va_list *list, const char *form);
 int			ft_putmaxstr(const char *s, int len);
 int			leftpadend(int ret, int i, int len, const char *form);
 int         pad(va_list *list, const char *form);
-int	        paddec(va_list *list, int len);
+int	        paddec(va_list *list, int len, int j);
 int	        padhex(va_list *list, int len);
 int	        padhexc(va_list *list, int len);
 int         percent(va_list *list, const char *form);
