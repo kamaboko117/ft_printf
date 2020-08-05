@@ -6,18 +6,26 @@
 #    By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 14:20:20 by asaboure          #+#    #+#              #
-#    Updated: 2020/05/14 22:09:12 by asaboure         ###   ########.fr        #
+#    Updated: 2020/08/05 18:07:03 by asaboure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libftprintf.a
 
 SRCS	=	ft_printf.c															\
-			ft_printfutils.c													\
-			ft_printfutils2.c													\
-			ft_printfutils3.c													\
-			ft_printfutils4.c													\
-
+			ft_printfutils/basicflags1.c										\
+			ft_printfutils/basicflags2.c										\
+			ft_printfutils/dotpad1.c											\
+			ft_printfutils/dotpad2.c											\
+			ft_printfutils/ft_printfutils.c										\
+			ft_printfutils/leftpad.c 											\
+			ft_printfutils/pad1.c												\
+			ft_printfutils/pad2.c 												\
+			ft_printfutils/paddotpad.c											\
+			ft_printfutils/tab.c												\
+			ft_printfutils/zeropad1.c 											\
+			ft_printfutils/zeropad2.c											\
+			
 LIBFTSRCS =	libft/ft_memccpy.c													\
 			libft/ft_memchr.c													\
 			libft/ft_memcmp.c													\

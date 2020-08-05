@@ -45,11 +45,11 @@ int	checkcondition(const char *form, int tmp)
 		return (1);
 	while ((tmp >= 8 && tmp <= 20) && ((form[i] >= '0' && form[i] <= '9')
 		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
-		{
-			if (form[i + 1] == '\0')
-				return (i);
+	{
+		if (form[i + 1] == '\0')
+			return (i);
 		i++;
-		}
+	}
 	return (i);
 }
 
@@ -75,7 +75,7 @@ int	ft_printf(const char *form, ...)
 		}
 		else if (form[i] != '%')
 			write(1, &form[i], 1);
-		i+= i == -1 ? 0 : checkcondition(form + i, tmp);
+		i += i == -1 ? 0 : checkcondition(form + i, tmp);
 	}
 	return (len + i);
 }

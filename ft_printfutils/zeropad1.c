@@ -1,32 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printfutils4.c                                  :+:      :+:    :+:   */
+/*   zeropad1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/08 21:14:08 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:08:57 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "../ft_printf.h"
 
-int	find_index(char c)
+int	zeropad(va_list *list, const char *form)
 {
-	int		i;
-	char	*tab;
+	int i;
+	int tmp;
+	int	mode;
 
-	tab = "cspdiuxX-0.*123456789%";
-	i = 0;
-	while (tab[i])
+	i = 1;
+	if (form[1] == '.')
+		dotpad(list, form + 1);
+	if (form[1] == '-')
+		return (leftpad(list, form + 1) - 1);
+	while (form[i] >= '0' && form[i] <= '9')
+		if (form[1 + i++] == '.')
+			return (pad(list, form + 1) - 1);
+	i = form[1] == '*' ? 2 : 1;
+	mode = form[1] == '*' ? 1 : 0;
+	while (form[i] >= '0' && form[i] <= '9')
+		i++;
+	tmp = find_index(form[i]);
+	if (tmp == 21)
+		return (zeropadpercent(mode, list, form));
+	if (tmp >= 3 && tmp <= 5)
+		return (zeropaddec(mode, list, form));
+	if (tmp == 6)
+		return (zeropadhex(mode, list, form));
+	if (tmp == 7)
+		return (zeropadhexc(mode, list, form));
+	return (0);
+}
+
+int	zeropadpercent(int mode, va_list *list, const char *form)
+{
+	int i;
+	int len;
+
+	(void)mode;
+	(void)list;
+	(void)form;
+	len = ft_atoi(form + 1);
+	i = 1;
+	while (i < len)
 	{
-		if (tab[i] == c)
-			return (i);
+		write(1, "0", 1);
 		i++;
 	}
-	return (-1);
+	write(1, "%", 1);
+	return (len - 2);
 }
 
 int	zeropaddec(int mode, va_list *list, const char *form)
@@ -105,22 +137,4 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 		return (ret);
 	else
 		return (ft_numlen(nb, 16) - i - 1);
-}
-
-int	leftpadend(int ret, int i, int len, const char *form)
-{
-	int tmp;
-
-	tmp = find_index(form[i]);
-	while (tmp == 10 && (form[i] == '.' || form[i] == '*' ||
-			(form[i] >= '0' && form[i] <= '9')))
-	{
-		len--;
-		i++;
-	}
-	while (len-- > 0)
-		write(1, " ", 1);
-	if (len < 0)
-		return (ret - len - i - 1);
-	return (ret);
 }
