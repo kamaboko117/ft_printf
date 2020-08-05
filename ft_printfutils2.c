@@ -39,21 +39,16 @@ int	zeropad(va_list *list, const char *form)
 	int tmp;
 	int	mode;
 
-	mode = 0;
 	i = 1;
-	if (form[i] == '.')
+	if (form[1] == '.')
 		dotpad(list, form + 1);
-	if (form[i] == '-')
-		return (leftpad(list, form));
+	if (form[1] == '-')
+		return (leftpad(list, form + 1) - 1);
 	while (form[i] >= '0' && form[i] <= '9')
 		if (form[1 + i++] == '.')
 			return (pad(list, form + 1) - 1);
-	i = 1;
-	if (form[i] == '*')
-	{
-		mode = 1;
-		i++;
-	}
+	i = form[1] == '*' ? 2 : 1;
+	mode = form[1] == '*' ? 1 : 0;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
@@ -93,14 +88,8 @@ int	dotpad(va_list *list, const char *form)
 	int	tmp;
 	int	len;
 
-	i = 1;
-	if (form[i] == '*')
-	{
-		len = va_arg(*list, int);
-		i++;
-	}
-	else
-		len = ft_atoi(form + i);
+	len = form[1] == '*' ? va_arg(*list, int) : ft_atoi(form + 1);
+	i = form[1] == '*' ? 2 : 1;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
@@ -116,11 +105,13 @@ int	dotpad(va_list *list, const char *form)
 		return (dotpadhexc(list, len) - i);
 	return (0);
 }
+
 int	dotpadstr(va_list *list, int len)
 {
 	char *str;
 
 	str = va_arg(*list, char*);
+	len = len < 0 ? ft_strlen(str) : len;
 	if (str == NULL)
 		return(ft_putmaxstr("(null)", len));
 	return(ft_putmaxstr(str, len));
@@ -145,13 +136,9 @@ int	leftpad(va_list *list, const char *form)
 	int ret;
 
 	f = tabinit();
-	i = 1;
-	len = ft_atoi(form + i);
-	if (form[i] == '*')
-	{
-		len = va_arg(*list, int);
-		i++;
-	}
+	len = form[1] == '*' ? va_arg(*list, int) : ft_atoi(form + 1);
+	len = len < 0 ? -len : len;
+	i = form[1] == '*' ? 2 : 1;
 	ret = len;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;

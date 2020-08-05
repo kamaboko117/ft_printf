@@ -59,4 +59,5 @@ int         padptr(va_list *list, int len);
 int         dotpadptr(va_list *list, int len);
 int         paddotpadptr(unsigned int nb, const char *form, int len);
 int         padchr(va_list *list, int len);
+int         starleftpad(va_list *list, const char *form, int len, int tmp);
 #endif

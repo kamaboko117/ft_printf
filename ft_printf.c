@@ -15,21 +15,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	checkcondition(const char *form, int tmp)
-{
-	int	i;
-
-	i = 0;
-	if (form[i + 1] == '\0')
-		return(0);
-	if ((tmp >= 8 && tmp <= 20) && ((form[i] >= '0' && form[i] <= '9')
-		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
-	{
-		return (1);
-	}
-	return (0);
-}
-
 int	checkpercent(const char *form, int tmp)
 {
 	char	*str;
@@ -47,7 +32,25 @@ int	checkpercent(const char *form, int tmp)
 		}
 	}
 	return (0);
+}
 
+int	checkcondition(const char *form, int tmp)
+{
+	int	i;
+
+	i = 0;
+	if (form[i + 1] == '\0')
+		return (i);
+	if (checkpercent(form, tmp))
+		return (1);
+	while ((tmp >= 8 && tmp <= 20) && ((form[i] >= '0' && form[i] <= '9')
+		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
+		{
+			if (form[i + 1] == '\0')
+				return (i);
+		i++;
+		}
+	return (i);
 }
 
 int	ft_printf(const char *form, ...)
@@ -72,11 +75,7 @@ int	ft_printf(const char *form, ...)
 		}
 		else if (form[i] != '%')
 			write(1, &form[i], 1);
-		while (checkcondition(form + i, tmp))
-			i++;
-		if (checkpercent(form + i, tmp))
-			i++;
+		i+= i == -1 ? 0 : checkcondition(form + i, tmp);
 	}
-	len += i;
-	return (len);
+	return (len + i);
 }

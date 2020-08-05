@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	find_index(char c)
 {
@@ -39,6 +40,8 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (len < 0)
+		return(starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, int);
 	ret = len - 1;
 	i = 1;
@@ -51,7 +54,7 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	}
 	while (len-- > ft_numlen(nb, 10))
 		write(1, "0", 1);
-	return (zeropaddecend(nb, ret, i) - strnumlen(form + 1));
+	return (zeropaddecend(nb, ret, i) - strnumlen(form + 1) - mode);
 }
 
 int	zeropadhex(int mode, va_list *list, const char *form)
@@ -65,6 +68,8 @@ int	zeropadhex(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (len < 0)
+		return(starleftpad(list, form, -len, 6) - 1);
 	nb = va_arg(*list, int);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;
@@ -88,6 +93,8 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (len < 0)
+		return(starleftpad(list, form, -len, 7) - 1);		
 	nb = va_arg(*list, int);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;

@@ -128,6 +128,8 @@ int	pad(va_list *list, const char *form)
 	if (form[i] == '.')
 		return (paddotpad(list, form + i, len) - (i + 1));
 	tmp = find_index(form[i]);
+	if (len < 0)
+		return (starleftpad(list, form + i, -len, tmp));
 	if (tmp == 0)
 		return (padchr(list, len) - strnumlen(form));
 	if (tmp == 1)
@@ -143,6 +145,21 @@ int	pad(va_list *list, const char *form)
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
+}
+
+int	starleftpad(va_list *list, const char *form, int len, int tmp)
+{
+	int	i;
+	int	(**f)(va_list *, const char *);
+	int ret;
+
+	f = tabinit();
+	i = 1;
+	ret = len;
+	if (tmp == -1)
+		return(0);
+	len -= (*f[tmp])(list, form + i);
+	return (leftpadend(ret, i, len, form));
 }
 
 int	padchr(va_list *list, int len)
