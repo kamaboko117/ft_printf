@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 17:53:04 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:24:59 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	paddotpad(va_list *list, const char *form, int len)
 	if (tmp >= 3 && tmp <= 5)
 		return (paddotpaddec(va_arg(*list, int), form + i, len) + 1);
 	if (tmp == 6)
-		return (paddotpadhex(va_arg(*list, unsigned int), form + i, len, 1) + 1);
+		return (pdphex(va_arg(*list, unsigned int), form + i, len, 1) + 1);
 	if (tmp == 7)
-		return (paddotpadhex(va_arg(*list, unsigned int), form + i, len, 0) + 1);
+		return (pdphex(va_arg(*list, unsigned int), form + i, len, 0) + 1);
 	if (tmp == 21)
 		return (padpercent(list, len) + 1);
 	return (0);
@@ -63,45 +63,45 @@ int	paddotpadstr(va_list *list, const char *form, int len)
 	return (size - strnumlen(form));
 }
 
-int	paddotpadptr(unsigned int nb, const char *form, int len)
+int	paddotpadptr(unsigned int n, const char *f, int len)
 {
-	int	zerolen;
+	int	zl;
 	int	i;
 	int j;
 
-	zerolen = ft_atoi(form) < ft_numlen(nb, 16) + 2 ? ft_numlen(nb, 16) + 2 : ft_atoi(form);
+	zl = ft_atoi(f) < ft_numlen(n, 16) + 2 ? ft_numlen(n, 16) + 2 : ft_atoi(f);
 	i = 0;
-	while (i++ <= len - zerolen)
+	while (i++ <= len - zl)
 		write(1, " ", 1);
 	j = 0;
 	write(1, "0x", 2);
-	while (j++ < zerolen - ft_numlen(nb, 16) - 2)
+	while (j++ < zl - ft_numlen(n, 16) - 2)
 		write(1, "0", 1);
-	if (ft_atoi(form) != 0)
-		ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
-	return (i + zerolen - strnumlen(form) - 3);
+	if (ft_atoi(f) != 0)
+		ft_putnbrbase_fd(n, "0123456789abcdef", 1);
+	return (i + zl - strnumlen(f) - 3);
 }
 
-int	paddotpadhex(int nb, const char *form, int len, int mode)
+int	pdphex(int nb, const char *f, int len, int mode)
 {
-	int		zerolen;
+	int		zl;
 	int		i;
 	int		j;
 	char	*base;
 
 	base = mode == 1 ? "0123456789abcdef" : "0123456789ABCDEF";
-	zerolen = ft_atoi(form) < ft_numlen(nb, 16) ? ft_numlen(nb, 16) : ft_atoi(form);
+	zl = ft_atoi(f) < ft_numlen(nb, 16) ? ft_numlen(nb, 16) : ft_atoi(f);
 	i = 0;
-	while (i++ < len - zerolen)
+	while (i++ < len - zl)
 		write(1, " ", 1);
 	j = 0;
-	while (j++ < zerolen - ft_numlen(nb, 16))
+	while (j++ < zl - ft_numlen(nb, 16))
 		write(1, "0", 1);
-	if (ft_atoi(form) != 0)
+	if (ft_atoi(f) != 0)
 		ft_putnbrbase_fd(nb, base, 1);
 	else
 		write(1, " ", 1);
-	return (i + zerolen - strnumlen(form) - 2);
+	return (i + zl - strnumlen(f) - 2);
 }
 
 int	paddotpaddec(int nb, const char *form, int len)

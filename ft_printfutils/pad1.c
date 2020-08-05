@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pad1.c                                              :+:      :+:    :+:   */
+/*   pad1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:42:55 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 17:44:32 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:40:12 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	pad(va_list *list, const char *form)
 		return (padhex(list, len));
 	if (tmp == 7)
 		return (padhexc(list, len));
+	return (padelse(list, len, tmp));
+}
+
+int	padelse(va_list *list, int len, int tmp)
+{
 	if (tmp == 21)
 		return (padpercent(list, len));
 	return (0);
@@ -101,19 +106,4 @@ int	padstr(va_list *list, int len)
 	}
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
-}
-
-int	padpercent(va_list *list, int len)
-{
-	int i;
-
-	i = 1;
-	(void)list;
-	while (i < len)
-	{
-		write(1, " ", 1);
-		i++;
-	}
-	write(1, "%", 1);
-	return (len - 1);
 }

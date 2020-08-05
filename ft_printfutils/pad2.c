@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:45:42 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 17:46:43 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:39:18 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,19 @@ int	padhexc(va_list *list, int len)
 		return (ret - 1);
 	else
 		return (ft_numlen(nb, 16) - 1);
+}
+
+int	padpercent(va_list *list, int len)
+{
+	int i;
+
+	i = 1;
+	(void)list;
+	while (i < len)
+	{
+		write(1, " ", 1);
+		i++;
+	}
+	write(1, "%", 1);
+	return (len - 1);
 }

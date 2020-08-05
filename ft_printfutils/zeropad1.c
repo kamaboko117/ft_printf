@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:08:57 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:29:06 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	zeropad(va_list *list, const char *form)
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
+	return (zeropadend(list, form, tmp, mode));
+}
+
+int	zeropadend(va_list *list, const char *form, int tmp, int mode)
+{
 	if (tmp == 21)
 		return (zeropadpercent(mode, list, form));
 	if (tmp >= 3 && tmp <= 5)
@@ -40,25 +45,6 @@ int	zeropad(va_list *list, const char *form)
 	if (tmp == 7)
 		return (zeropadhexc(mode, list, form));
 	return (0);
-}
-
-int	zeropadpercent(int mode, va_list *list, const char *form)
-{
-	int i;
-	int len;
-
-	(void)mode;
-	(void)list;
-	(void)form;
-	len = ft_atoi(form + 1);
-	i = 1;
-	while (i < len)
-	{
-		write(1, "0", 1);
-		i++;
-	}
-	write(1, "%", 1);
-	return (len - 2);
 }
 
 int	zeropaddec(int mode, va_list *list, const char *form)
@@ -73,7 +59,7 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	else
 		len = ft_atoi(form + 1);
 	if (len < 0)
-		return(starleftpad(list, form, -len, 3) - 1);
+		return (starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, int);
 	ret = len - 1;
 	i = 1;
@@ -101,7 +87,7 @@ int	zeropadhex(int mode, va_list *list, const char *form)
 	else
 		len = ft_atoi(form + 1);
 	if (len < 0)
-		return(starleftpad(list, form, -len, 6) - 1);
+		return (starleftpad(list, form, -len, 6) - 1);
 	nb = va_arg(*list, int);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;
@@ -126,7 +112,7 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 	else
 		len = ft_atoi(form + 1);
 	if (len < 0)
-		return(starleftpad(list, form, -len, 7) - 1);		
+		return (starleftpad(list, form, -len, 7) - 1);
 	nb = va_arg(*list, int);
 	ret = len - ft_numlen(len, 16) - 1;
 	i = 1;

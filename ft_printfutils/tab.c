@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:32:52 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 17:34:37 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:34:28 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	(**tabinit(void))(va_list *, const char *)
 {
 	int (**f)(va_list *, const char *);
+	int	i;
 
 	if (!(f = malloc(22 * sizeof(*f))))
 		return (NULL);
@@ -29,16 +30,12 @@ int	(**tabinit(void))(va_list *, const char *)
 	f[8] = leftpad;
 	f[9] = zeropad;
 	f[10] = dotpad;
-	f[11] = pad;
-	f[12] = pad;
-	f[13] = pad;
-	f[14] = pad;
-	f[15] = pad;
-	f[16] = pad;
-	f[17] = pad;
-	f[18] = pad;
-	f[19] = pad;
-	f[20] = pad;
+	i = 11;
+	while (i <= 20)
+	{
+		f[i] = pad;
+		i++;
+	}
 	f[21] = percent;
 	return (f);
 }

@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:07:42 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:15:19 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	dotpadhexc(va_list *list, int len)
 		len--;
 	}
 	if (len == 0 && nb == 0)
-		return(0);
+		return (0);
 	ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
 	return (ret);
 }
@@ -78,7 +78,7 @@ int	dotpadhex(va_list *list, int len)
 		len--;
 	}
 	if (len == 0 && nb == 0)
-		return(0);
+		return (0);
 	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
 	return (ret);
 }
@@ -97,7 +97,7 @@ int	dotpadptr(va_list *list, int len)
 	}
 	write(1, "0x", 2);
 	if (len == 0 && nb == 0)
-		return(2);
+		return (2);
 	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
 	return (ret);
 }

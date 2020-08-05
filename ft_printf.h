@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/05/09 02:37:57 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 18:38:45 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ int			dotpadstr(va_list *list, int len);
 int			paddotpadstr(va_list *list, const char *form, int len);
 int			paddotpaddec(int nb, const char *form, int len);
 int			nbru(va_list *list, const char *form);
-int			paddotpadhex(int nb, const char *form, int len, int mode);
+int			pdphex(int nb, const char *form, int len, int mode);
 int			padptr(va_list *list, int len);
 int			dotpadptr(va_list *list, int len);
 int			paddotpadptr(unsigned int nb, const char *form, int len);
 int			padchr(va_list *list, int len);
 int			starleftpad(va_list *list, const char *form, int len, int tmp);
+int			zeropadend(va_list *list, const char *form, int tmp, int mode);
+int			padelse(va_list *list, int len, int tmp);
 #endif
