@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 19:09:09 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 19:15:24 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ int	paddotpaddec(int nb, const char *form, int len)
 	j = 0;
 	while (j++ < zerolen - ft_numlen(nb, 10))
 		write(1, "0", 1);
-	if (ft_atoi(form + 1) != 0)
+	if (ft_atoi(form + 1) != 0 || nb != 0)
 		ft_putnbr_fd(nb, 1);
 	else
 		write(1, " ", 1);
