@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 20:55:15 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:07:58 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 20:02:54 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	dotpadnbr(va_list *list, int len)
 	int	nb;
 	int ret;
 	int	s;
-
-	if (len == 0)
-		return (0);
+	
 	s = 0;
 	ret = len;
 	if ((nb = va_arg(*list, int)) < 0)
@@ -28,6 +26,8 @@ int	dotpadnbr(va_list *list, int len)
 		nb = -nb;
 		s = 1;
 	}
+	if (len == 0 && nb == 0)
+		return (0);
 	while (len > ft_numlen(nb, 10))
 	{
 		write(1, "0", 1);

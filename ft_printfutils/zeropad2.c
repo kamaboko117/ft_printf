@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:59:56 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:30:58 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/05 20:30:55 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	zeropadpercent(int mode, va_list *list, const char *form)
 
 	(void)mode;
 	(void)list;
-	(void)form;
 	len = ft_atoi(form + 1);
 	i = 1;
 	while (i < len)
@@ -37,5 +36,14 @@ int	zeropadpercent(int mode, va_list *list, const char *form)
 		i++;
 	}
 	write(1, "%", 1);
-	return (len - 2);
+	i = 0;
+	while (form[i])
+	{
+		if (form[i] == '%')
+			break;
+		i++;
+	}
+	if (form[i + 1])
+		write(1, &form[i + 1], 1);
+	return (len - (strnumlen(form)));
 }
