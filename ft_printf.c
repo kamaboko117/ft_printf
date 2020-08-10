@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 20:34:21 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:45:12 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int	checkpercent(const char *form, int tmp)
 			i++;
 		}
 	}
+	if (tmp >= 8)
+	{
+		i = 1;
+		while (form[i] >= '0' && form[i] <= '9')
+			i++;
+		if (form[i] == '.')
+		{
+			i++;
+			if (form[i] == '*')
+				i++;
+		}
+		while (form[i] >= '0' && form[i] <= '9')
+			i++;
+		if (form[i] == '%')
+			return (i + 1);
+	}
 	return (0);
 }
 
@@ -42,7 +58,7 @@ int	checkcondition(const char *form, int tmp)
 	if (form[i + 1] == '\0')
 		return (i);
 	if (checkpercent(form, tmp))
-		return (1);
+		return (checkpercent(form, tmp));
 	while ((tmp >= 8 && tmp <= 20) && ((form[i] >= '0' && form[i] <= '9')
 		|| form[i] == '-' || form[i] == '.' || form[i] == '*'))
 	{
@@ -67,6 +83,8 @@ int	ft_printf(const char *form, ...)
 	va_start(list, form);
 	while (form && form[++i])
 	{
+		if (i != 0 && form[i - 1] == '\0')
+			return(len + i - 1);
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%')
 		{

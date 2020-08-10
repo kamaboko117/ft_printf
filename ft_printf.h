@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 19:59:00 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:09:26 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			paddec(va_list *list, int len, int j);
 int			padhex(va_list *list, int len);
 int			padhexc(va_list *list, int len);
 int			percent(va_list *list, const char *form);
-int			padpercent(va_list *list, int len);
+int			padpercent(const char *form, int len);
 int			zeropadpercent(int mode, va_list *list, const char *form);
 int			padstr(va_list *list, int len);
 int			strnumlen(const char *form);
@@ -54,12 +54,17 @@ int			dotpadstr(va_list *list, int len);
 int			paddotpadstr(va_list *list, const char *form, int len);
 int			paddotpaddec(int nb, const char *form, int len);
 int			nbru(va_list *list, const char *form);
-int			pdphex(int nb, const char *form, int len, int mode);
+int			pdphex(unsigned int nb, const char *form, int len, int mode);
 int			padptr(va_list *list, int len);
 int			dotpadptr(va_list *list, int len);
 int			paddotpadptr(unsigned int nb, const char *form, int len);
 int			padchr(va_list *list, int len);
 int			starleftpad(va_list *list, const char *form, int len, int tmp);
 int			zeropadend(va_list *list, const char *form, int tmp, int mode);
-int			padelse(va_list *list, int len, int tmp);
+int			padelse(const char *form, int len, int tmp, int i);
+int         pdpstar(va_list *list, const char *form, int len);
+int         pdpshex(unsigned int nb, int len, int zl);
+int         pdpshexc(unsigned int nb, int len, int zl);
+int         pdpsdec(unsigned int nb, int len, int zl);
+int	        pdpsstr(va_list *list, int len, int size);
 #endif

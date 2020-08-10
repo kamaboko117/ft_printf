@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:42:55 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:40:12 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:13:47 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	pad(va_list *list, const char *form)
 		return (padhex(list, len));
 	if (tmp == 7)
 		return (padhexc(list, len));
-	return (padelse(list, len, tmp));
+	return (padelse(form, len, tmp, i));
 }
 
-int	padelse(va_list *list, int len, int tmp)
+int	padelse(const char *form, int len, int tmp, int i)
 {
 	if (tmp == 21)
-		return (padpercent(list, len));
+		return (padpercent(form + i, len) - i + 1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:45:42 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:39:18 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 18:41:32 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	paddec(va_list *list, int len, int j)
 
 int	padhex(va_list *list, int len)
 {
-	int	nb;
-	int	diff;
-	int ret;
+	unsigned int	nb;
+	int				diff;
+	int				ret;
 
-	nb = va_arg(*list, int);
+	nb = va_arg(*list, unsigned int);
 	diff = len - ft_numlen(len, 16) - 1;
 	ret = len;
 	while (len-- > ft_numlen(nb, 16))
@@ -58,11 +58,11 @@ int	padhex(va_list *list, int len)
 
 int	padhexc(va_list *list, int len)
 {
-	int	nb;
-	int	diff;
-	int ret;
+	unsigned int	nb;
+	int				diff;
+	int 			ret;
 
-	nb = va_arg(*list, int);
+	nb = va_arg(*list, unsigned int);
 	diff = len - ft_numlen(len, 16) - 1;
 	ret = len;
 	while (len-- > ft_numlen(nb, 16))
@@ -74,17 +74,18 @@ int	padhexc(va_list *list, int len)
 		return (ft_numlen(nb, 16) - 1);
 }
 
-int	padpercent(va_list *list, int len)
+int	padpercent(const char *form, int len)
 {
 	int i;
 
 	i = 1;
-	(void)list;
 	while (i < len)
 	{
 		write(1, " ", 1);
 		i++;
 	}
 	write(1, "%", 1);
+	if (form[1])
+		write(1, &form[1], 1);
 	return (len - 1);
 }
