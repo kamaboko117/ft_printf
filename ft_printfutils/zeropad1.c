@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:29:06 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 15:46:59 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	zeropadend(va_list *list, const char *form, int tmp, int mode)
 	if (tmp >= 3 && tmp <= 5)
 		return (zeropaddec(mode, list, form));
 	if (tmp == 6)
-		return (zeropadhex(mode, list, form));
+		return (zeropadhex(mode, list, form) - strnumlen(form));
 	if (tmp == 7)
-		return (zeropadhexc(mode, list, form));
+		return (zeropadhexc(mode, list, form) - strnumlen(form));
 	return (0);
 }
 
@@ -77,10 +77,9 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 
 int	zeropadhex(int mode, va_list *list, const char *form)
 {
-	int	nb;
-	int	len;
-	int	ret;
-	int	i;
+	unsigned int	nb;
+	int				len;
+	int				ret;
 
 	if (mode == 1)
 		len = va_arg(*list, int);
@@ -88,24 +87,22 @@ int	zeropadhex(int mode, va_list *list, const char *form)
 		len = ft_atoi(form + 1);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 6) - 1);
-	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 16) - 1;
-	i = 1;
+	nb = va_arg(*list, unsigned int);
+	ret = len;
 	while (len-- > ft_numlen(nb, 16))
 		write(1, "0", 1);
 	ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
-	if (ret >= ft_numlen(nb, 16) - i - 1)
+	if (ret >= ft_numlen(nb, 16))
 		return (ret);
 	else
-		return (ft_numlen(nb, 16) - i - 1);
+		return (ft_numlen(nb, 16));
 }
 
 int	zeropadhexc(int mode, va_list *list, const char *form)
 {
-	int	nb;
-	int	len;
-	int	ret;
-	int	i;
+	unsigned int	nb;
+	int				len;
+	int				ret;
 
 	if (mode == 1)
 		len = va_arg(*list, int);
@@ -113,14 +110,13 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 		len = ft_atoi(form + 1);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 7) - 1);
-	nb = va_arg(*list, int);
-	ret = len - ft_numlen(len, 16) - 1;
-	i = 1;
+	nb = va_arg(*list, unsigned int);
+	ret = len;
 	while (len-- > ft_numlen(nb, 16))
 		write(1, "0", 1);
 	ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
-	if (ret >= ft_numlen(nb, 16) - i - 1)
+	if (ret >= ft_numlen(nb, 16))
 		return (ret);
 	else
-		return (ft_numlen(nb, 16) - i - 1);
+		return (ft_numlen(nb, 16));
 }
