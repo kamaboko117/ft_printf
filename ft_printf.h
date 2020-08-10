@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 19:54:52 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 20:12:11 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,6 @@ int         pdpshexc(unsigned int nb, int len, int zl);
 int         pdpsdec(unsigned int nb, int len, int zl);
 int	        pdpsstr(va_list *list, int len, int size);
 int	        padnbru(va_list *list, int len);
+int         zeropadnbru(int mode, va_list *list, const char *form);
+int         dotpadnbru(va_list *list, int len);
 #endif

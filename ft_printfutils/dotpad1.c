@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 19:59:13 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 20:09:43 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	dotpad(va_list *list, const char *form)
 		return (dotpadstr(list, len) - i);
 	if (tmp == 2)
 		return (dotpadptr(list, len) - i);
-	else if (tmp >= 3 && tmp <= 5)
+	else if (tmp >= 3 && tmp <= 4)
 		return (dotpadnbr(list, len) - i);
+	if (tmp == 5)
+		return (dotpadnbru(list, len) - i);
 	else if (tmp == 6)
 		return (dotpadhex(list, len) - i);
 	else if (tmp == 7)

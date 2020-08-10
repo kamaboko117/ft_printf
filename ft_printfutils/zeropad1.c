@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 15:46:59 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/10 20:05:36 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,38 @@ int	zeropadend(va_list *list, const char *form, int tmp, int mode)
 {
 	if (tmp == 21)
 		return (zeropadpercent(mode, list, form));
-	if (tmp >= 3 && tmp <= 5)
+	if (tmp >= 3 && tmp <= 4)
 		return (zeropaddec(mode, list, form));
+	if (tmp == 5)
+		return (zeropadnbru(mode, list, form));
 	if (tmp == 6)
 		return (zeropadhex(mode, list, form) - strnumlen(form));
 	if (tmp == 7)
 		return (zeropadhexc(mode, list, form) - strnumlen(form));
 	return (0);
+}
+
+int	zeropadnbru(int mode, va_list *list, const char *form)
+{
+	unsigned int	nb;
+	int				len;
+	int				ret;
+
+	if (mode == 1)
+		len = va_arg(*list, int);
+	else
+		len = ft_atoi(form + 1);
+	if (len < 0)
+		return (starleftpad(list, form, -len, 3) - 1);
+	nb = va_arg(*list, unsigned int);
+	ret = len - 1;
+	while (len-- > ft_numlen(nb, 10))
+		write(1, "0", 1);
+	ft_putnbru_fd(nb, 1);
+	if (ret >= ft_numlen(nb, 10) - 1)
+		return (ret - strnumlen(form + 1) - mode);
+	else
+		return (ft_numlen(nb, 10) - 1 - strnumlen(form + 1) - mode);
 }
 
 int	zeropaddec(int mode, va_list *list, const char *form)
