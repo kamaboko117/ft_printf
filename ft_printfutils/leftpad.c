@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 17:57:14 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 18:24:17 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,23 @@ int	leftpad(va_list *list, const char *form)
 		i++;
 	if ((tmp = find_index(form[i])) == -1)
 		return (0);
+	if (tmp == 21)
+		return (leftpadpercent(len, i, form));
 	len -= (*f[tmp])(list, form + i);
 	return (leftpadend(ret, i, len, form));
+}
+
+int	leftpadpercent(int len, int j, const char *form)
+{
+	int	i;
+
+	write (1, "%", 1);
+	i = 1;
+	while (i++ < len)
+		write(1, " ", 1);
+	if (form[j + 1])
+		write(1, &form[j + 1], 1);
+	return (len - j);
 }
 
 int	leftpadend(int ret, int i, int len, const char *form)
@@ -49,4 +64,19 @@ int	leftpadend(int ret, int i, int len, const char *form)
 	if (len < 0)
 		return (ret - len - i - 1);
 	return (ret);
+}
+
+int	starleftpad(va_list *list, const char *form, int len, int tmp)
+{
+	int	i;
+	int	(**f)(va_list *, const char *);
+	int ret;
+
+	f = tabinit();
+	i = 1;
+	ret = len;
+	if (tmp == -1)
+		return (0);
+	len -= (*f[tmp])(list, form + i);
+	return (leftpadend(ret, i, len, form));
 }

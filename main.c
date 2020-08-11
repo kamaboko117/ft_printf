@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 18:48:45 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 20:08:31 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 19:27:12 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(void)
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*s_hidden = "hi low";
-	printf("[%d]\n", ft_printf("15unsigned 1 %.u unsigned 2 %.u\n", 42, -42));
-	printf("[%d]\n", printf("15unsigned 1 %.u unsigned 2 %.u\n", 42, -42));
+	printf("[%d]\n", ft_printf("neg9 %*.*d\n", 15, 155, -3000));
+	printf("[%d]\n", printf("neg9 %*.*d\n", 15, 155, -3000));
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);

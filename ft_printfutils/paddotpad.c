@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 19:15:24 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 19:36:47 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	paddotpad(va_list *list, const char *form, int len)
 
 	i = strnumlen(form + 1);
 	tmp = find_index(form[i + 1]);
+	if (len < 0)
+		return (starleftpdp(list, form, -len));
 	if (tmp == 1)
 		return (paddotpadstr(list, form + i, len));
 	if (tmp == 2)
@@ -35,6 +37,32 @@ int	paddotpad(va_list *list, const char *form, int len)
 	if (tmp == 21)
 		return (padpercent(form + i, len) + 1);
 	return (0);
+}
+
+int starleftpdp(va_list *list, const char *form, int len)
+{
+	int	i;
+	int ret;
+	int tmp;
+	int dotlen;
+
+	dotlen = form[1] == '*' ? va_arg(*list, int) : ft_atoi(form + 1);
+	i = form[1] == '*' ? 2 : strnumlen(form + 1);
+	ret = len + 1;
+	tmp = find_index(form[i]);
+	if (tmp == 1)
+		len -= (dotpadstr(list, dotlen));
+	if (tmp == 2)
+		len -= (dotpadptr(list, dotlen));
+	else if (tmp >= 3 && tmp <= 4)
+		len -= (dotpadnbr(list, dotlen));
+	if (tmp == 5)
+		len -= (dotpadnbru(list, dotlen));
+	else if (tmp == 6)
+		len -= (dotpadhex(list, dotlen));
+	else if (tmp == 7)
+		len -= (dotpadhexc(list, dotlen));
+	return (leftpadend(ret, i, len, form));
 }
 
 int	pdpstar(va_list *list, const char *form, int len)
@@ -82,7 +110,7 @@ int	pdpsstr(va_list *list, int len, int size)
 	return (size);
 }
 
-int	pdpsdec(unsigned int nb, int len, int zl)
+int	pdpsdec(int nb, int len, int zl)
 {
 	int i;
 	int j;
@@ -102,7 +130,7 @@ int	pdpsdec(unsigned int nb, int len, int zl)
 	j = 0;
 	while (j++ < zl - ft_numlen(nb, 10))
 		write(1, "0", 1);
-	if (oldzl != 0)
+	if (oldzl != 0 || nb != 0)
 		ft_putnbr_fd(nb, 1);
 	else
 		write(1, " ", 1);
@@ -123,7 +151,7 @@ int	pdpshexc(unsigned int nb, int len, int zl)
 	j = 0;
 	while (j++ < zl - ft_numlen(nb, 16))
 		write(1, "0", 1);
-	if (oldzl != 0)
+	if (oldzl != 0 || nb != 0)
 		ft_putnbrbase_fd(nb, "0123456789ABCDEF", 1);
 	else
 		write(1, " ", 1);
@@ -144,7 +172,7 @@ int	pdpshex(unsigned int nb, int len, int zl)
 	j = 0;
 	while (j++ < zl - ft_numlen(nb, 16))
 		write(1, "0", 1);
-	if (oldzl != 0)
+	if (oldzl != 0 || nb != 0)
 		ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
 	else
 		write(1, " ", 1);
