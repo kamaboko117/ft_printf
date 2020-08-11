@@ -6,11 +6,39 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:59:56 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 20:30:55 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 20:13:08 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+int	zeropaddec(int mode, va_list *list, const char *form)
+{
+	int	nb;
+	int	len;
+	int	ret;
+	int	i;
+
+	if (mode == 1)
+		len = va_arg(*list, int);
+	else
+		len = ft_atoi(form + 1);
+	if (len < 0)
+		return (starleftpad(list, form, -len, 3) - 1);
+	nb = va_arg(*list, int);
+	ret = len - 1;
+	i = 1;
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+		len--;
+		i = 0;
+	}
+	while (len-- > ft_numlen(nb, 10))
+		write(1, "0", 1);
+	return (zeropaddecend(nb, ret, i) - strnumlen(form + 1) - mode);
+}
 
 int	zeropaddecend(int nb, int ret, int i)
 {
@@ -40,7 +68,7 @@ int	zeropadpercent(int mode, va_list *list, const char *form)
 	while (form[i])
 	{
 		if (form[i] == '%')
-			break;
+			break ;
 		i++;
 	}
 	if (form[i + 1])

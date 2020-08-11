@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 18:24:17 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 19:59:15 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	leftpadpercent(int len, int j, const char *form)
 {
 	int	i;
 
-	write (1, "%", 1);
+	write(1, "%", 1);
 	i = 1;
 	while (i++ < len)
 		write(1, " ", 1);

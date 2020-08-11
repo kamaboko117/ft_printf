@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 19:36:26 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 20:03:22 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,16 @@ int			paddotpadptr(unsigned int nb, const char *form, int len);
 int			padchr(va_list *list, int len);
 int			starleftpad(va_list *list, const char *form, int len, int tmp);
 int			zeropadend(va_list *list, const char *form, int tmp, int mode);
-int			padelse(const char *form, int len, int tmp, int i);
-int         pdpstar(va_list *list, const char *form, int len);
-int         pdpshex(unsigned int nb, int len, int zl);
-int         pdpshexc(unsigned int nb, int len, int zl);
-int         pdpsdec(int nb, int len, int zl);
-int	        pdpsstr(va_list *list, int len, int size);
-int	        padnbru(va_list *list, int len);
-int         zeropadnbru(int mode, va_list *list, const char *form);
-int         dotpadnbru(va_list *list, int len);
-int         leftpadpercent(int len, int j, const char *form);
-int         starleftpdp(va_list *list, const char *form, int len);
+int			padelse(va_list *list, const char *form, int len, int i);
+int			pdpstar(va_list *list, const char *form, int len);
+int			pdpshex(unsigned int nb, int len, int zl);
+int			pdpshexc(unsigned int nb, int len, int zl);
+int			pdpsdec(int nb, int len, int zl);
+int			pdpsstr(va_list *list, int len, int size);
+int			padnbru(va_list *list, int len);
+int			zeropadnbru(int mode, va_list *list, const char *form);
+int			dotpadnbru(va_list *list, int len);
+int			leftpadpercent(int len, int j, const char *form);
+int			starleftpdp(va_list *list, const char *form, int len);
+int			checkpercentpad(const char *form);
 #endif

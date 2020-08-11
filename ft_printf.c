@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 18:45:12 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 19:52:43 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,27 @@ int	checkpercent(const char *form, int tmp)
 		}
 	}
 	if (tmp >= 8)
+		return (checkpercentpad(form));
+	return (0);
+}
+
+int	checkpercentpad(const char *form)
+{
+	int i;
+
+	i = 1;
+	while (form[i] >= '0' && form[i] <= '9')
+		i++;
+	if (form[i] == '.')
 	{
-		i = 1;
-		while (form[i] >= '0' && form[i] <= '9')
+		i++;
+		if (form[i] == '*')
 			i++;
-		if (form[i] == '.')
-		{
-			i++;
-			if (form[i] == '*')
-				i++;
-		}
-		while (form[i] >= '0' && form[i] <= '9')
-			i++;
-		if (form[i] == '%')
-			return (i + 1);
 	}
+	while (form[i] >= '0' && form[i] <= '9')
+		i++;
+	if (form[i] == '%')
+		return (i + 1);
 	return (0);
 }
 
@@ -84,7 +90,7 @@ int	ft_printf(const char *form, ...)
 	while (form && form[++i])
 	{
 		if (i != 0 && form[i - 1] == '\0')
-			return(len + i - 1);
+			return (len + i - 1);
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%')
 		{

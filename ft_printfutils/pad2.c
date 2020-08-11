@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:45:42 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 18:41:32 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 20:05:16 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	padhexc(va_list *list, int len)
 {
 	unsigned int	nb;
 	int				diff;
-	int 			ret;
+	int				ret;
 
 	nb = va_arg(*list, unsigned int);
 	diff = len - ft_numlen(len, 16) - 1;
@@ -88,4 +88,33 @@ int	padpercent(const char *form, int len)
 	if (form[1])
 		write(1, &form[1], 1);
 	return (len - 1);
+}
+
+int	padstr(va_list *list, int len)
+{
+	unsigned long	i;
+	unsigned long	rlen;
+	char			*str;
+
+	i = 0;
+	rlen = len;
+	str = va_arg(*list, char *);
+	if (str == NULL)
+	{
+		while (i++ + 6 < rlen)
+			write(1, " ", 1);
+		write(1, "(null)", 6);
+		if (rlen > 6)
+			return (len);
+		return (6);
+	}
+	if (rlen > ft_strlen(str))
+	{
+		while (i++ < rlen - ft_strlen(str))
+			write(1, " ", 1);
+		ft_putstr_fd(str, 1);
+		return (len);
+	}
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }

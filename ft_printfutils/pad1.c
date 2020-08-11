@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:42:55 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 19:55:09 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/11 20:03:54 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,16 @@ int	pad(va_list *list, const char *form)
 		return (padnbru(list, len) - i);
 	if (tmp == 6)
 		return (padhex(list, len) - i + 1);
-	if (tmp == 7)
-		return (padhexc(list, len) - i + 1);
-	return (padelse(form, len, tmp, i));
+	return (padelse(list, form, len, i));
 }
 
-int	padelse(const char *form, int len, int tmp, int i)
+int	padelse(va_list *list, const char *form, int len, int i)
 {
+	int tmp;
+
+	tmp = find_index(form[i]);
+	if (tmp == 7)
+		return (padhexc(list, len) - i + 1);
 	if (tmp == 21)
 		return (padpercent(form + i, len) - i + 1);
 	return (0);
@@ -95,33 +98,4 @@ int	padptr(va_list *list, int len)
 		return (ret - 1);
 	else
 		return ((ft_numlen(ptr, 16) + 2) - 1);
-}
-
-int	padstr(va_list *list, int len)
-{
-	unsigned long	i;
-	unsigned long	rlen;
-	char			*str;
-
-	i = 0;
-	rlen = len;
-	str = va_arg(*list, char *);
-	if (str == NULL)
-	{
-		while (i++ + 6 < rlen)
-			write(1, " ", 1);
-		write(1, "(null)", 6);
-		if (rlen > 6)
-			return (len);
-		return (6);
-	}
-	if (rlen > ft_strlen(str))
-	{
-		while (i++ < rlen - ft_strlen(str))
-			write(1, " ", 1);
-		ft_putstr_fd(str, 1);
-		return (len);
-	}
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
 }

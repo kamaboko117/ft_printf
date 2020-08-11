@@ -6,7 +6,7 @@
 #    By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 14:20:20 by asaboure          #+#    #+#              #
-#    Updated: 2020/08/05 18:07:03 by asaboure         ###   ########.fr        #
+#    Updated: 2020/08/11 20:10:57 by asaboure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS	=	ft_printf.c															\
 			ft_printfutils/leftpad.c 											\
 			ft_printfutils/pad1.c												\
 			ft_printfutils/pad2.c 												\
-			ft_printfutils/paddotpad.c											\
+			ft_printfutils/paddotpad1.c											\
+			ft_printfutils/paddotpad2.c											\
+			ft_printfutils/paddotpad3.c											\
 			ft_printfutils/tab.c												\
 			ft_printfutils/zeropad1.c 											\
 			ft_printfutils/zeropad2.c											\
