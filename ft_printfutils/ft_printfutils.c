@@ -6,11 +6,10 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 18:24:19 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:45:58 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../ft_printf.h"
 
 int	strnumlen(const char *form)

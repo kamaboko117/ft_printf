@@ -6,12 +6,11 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 20:10:13 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:45:56 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdio.h>
 
 int	paddotpad(va_list *list, const char *form, int len)
 {

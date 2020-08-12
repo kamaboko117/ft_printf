@@ -6,14 +6,13 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/12 15:26:36 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:45:19 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	checkpercent(const char *form, int tmp)
 {
