@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 18:48:45 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/12 15:23:04 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:48:33 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 int	main(void)
 {
-	//void	*cursed = malloc(42);
+	void	*cursed = malloc(42);
 	//void	*cursed2 = malloc(7);
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*s_hidden = "hi low";
-	printf("[%d]\n", ft_printf("neg9 %-4d\n", -3000));
-	printf("[%d]\n", printf("neg9 %-4d\n", -3000));
-	while (1);
+	printf("[%d]\n", ft_printf("%.*p", -3, cursed));
+	printf("[%d]\n", printf("%.*p", -3, cursed));
+//	while (1);
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);
 //	printf("kamaboko117 %.10X kamaboko117\n", x);

@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/10 20:09:43 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:51:14 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	dotpadstr(va_list *list, int len)
 	char *str;
 
 	str = va_arg(*list, char*);
+	if (str == NULL && len < 0)
+		return (ft_putmaxstr("(null)", 6));
 	len = len < 0 ? ft_strlen(str) : len;
 	if (str == NULL)
 		return (ft_putmaxstr("(null)", len));
@@ -87,8 +89,8 @@ int	dotpadhex(va_list *list, int len)
 
 int	dotpadptr(va_list *list, int len)
 {
-	int nb;
-	int ret;
+	intptr_t	nb;
+	int			ret;
 
 	nb = va_arg(*list, intptr_t);
 	ret = len > ft_numlen(nb, 16) + 2 ? len : ft_numlen(nb, 16);

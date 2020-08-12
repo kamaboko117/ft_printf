@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrubase_fd.c                                 :+:      :+:    :+:  */
+/*   ft_putnbrubase_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 18:23:37 by asaboure          #+#    #+#             */
-/*   Updated: 2020/03/03 19:19:52 by asaboure         ###   ########.fr       */
+/*   Created: 2020/08/12 16:53:32 by asaboure          #+#    #+#             */
+/*   Updated: 2020/08/12 16:54:06 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static int		check_base(char *base)
 	return (1);
 }
 
-static void		ft_recurr(unsigned int n, int fd, unsigned int baselen, char *base)
+static void		ft_recurr(unsigned int n, int fd,
+							unsigned int baselen, char *base)
 {
 	char a;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbru_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaboure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 20:01:01 by asaboure          #+#    #+#             */
-/*   Updated: 2020/07/31 20:01:05 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 16:54:28 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_recurr(unsigned int n, int fd)
 	}
 }
 
-void		ft_putnbru_fd(unsigned int n, int fd)
+void	ft_putnbru_fd(unsigned int n, int fd)
 {
 	ft_recurr(n, fd);
 }
