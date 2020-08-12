@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 19:52:43 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:26:36 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ int	checkcondition(const char *form, int tmp)
 	return (i);
 }
 
+int	freetab(int (**f)(va_list *, const char*), int len, int i)
+{
+	free(f);
+	return (len + i);
+}
+
 int	ft_printf(const char *form, ...)
 {
 	int		(**f)(va_list *, const char *);
@@ -90,7 +96,7 @@ int	ft_printf(const char *form, ...)
 	while (form && form[++i])
 	{
 		if (i != 0 && form[i - 1] == '\0')
-			return (len + i - 1);
+			return (freetab(f, len, i - 1));
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%')
 		{
@@ -101,5 +107,5 @@ int	ft_printf(const char *form, ...)
 			write(1, &form[i], 1);
 		i += i == -1 ? 0 : checkcondition(form + i, tmp);
 	}
-	return (len + i);
+	return (freetab(f, len, i));
 }

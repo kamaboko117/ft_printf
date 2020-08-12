@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 20:03:22 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:27:02 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ int			dotpadnbru(va_list *list, int len);
 int			leftpadpercent(int len, int j, const char *form);
 int			starleftpdp(va_list *list, const char *form, int len);
 int			checkpercentpad(const char *form);
+int			freetab(int (**f)(va_list *, const char*), int len, int i);
 #endif

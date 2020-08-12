@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 19:59:15 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/12 15:24:40 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	leftpad(va_list *list, const char *form)
 	int	len;
 	int ret;
 
-	f = tabinit();
 	len = form[1] == '*' ? va_arg(*list, int) : ft_atoi(form + 1);
 	len = len < 0 ? -len : len;
 	i = form[1] == '*' ? 2 : 1;
@@ -31,7 +30,9 @@ int	leftpad(va_list *list, const char *form)
 		return (0);
 	if (tmp == 21)
 		return (leftpadpercent(len, i, form));
+	f = tabinit();
 	len -= (*f[tmp])(list, form + i);
+	freetab(f, 0, 0);
 	return (leftpadend(ret, i, len, form));
 }
 
@@ -72,11 +73,12 @@ int	starleftpad(va_list *list, const char *form, int len, int tmp)
 	int	(**f)(va_list *, const char *);
 	int ret;
 
-	f = tabinit();
 	i = 1;
 	ret = len;
 	if (tmp == -1)
 		return (0);
+	f = tabinit();
 	len -= (*f[tmp])(list, form + i);
+	freetab(f, 0, 0);
 	return (leftpadend(ret, i, len, form));
 }
