@@ -6,11 +6,32 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/22 16:23:07 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:08:16 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
+
+int	checkzeropad(va_list *list, const char *form, int j, int mode)
+{
+	int 	size;
+	int		i;
+	int		tmp;
+	va_list copy;
+
+	i = 1;
+	va_copy(copy, *list);
+	size = form[j + 1] == '*' ? va_arg(copy, int) : ft_atoi(form);
+	va_end(copy);
+	if (size >= 0)
+		return (pad(list, form + 1) - 1);
+	va_arg(*list, int);
+	while (form[i + j + 1] >= '0' && form[i + j + 1] <= '9')
+		i++;
+	tmp = find_index(form[i + j + 1]);
+	return (zeropadend(list, form, tmp, mode) - (i + 1));	
+}
 
 int	zeropad(va_list *list, const char *form)
 {
@@ -23,11 +44,11 @@ int	zeropad(va_list *list, const char *form)
 		return (dotpad(list, form + 1));
 	if (form[1] == '-')
 		return (leftpad(list, form + 1) - 1);
+	mode = form[1] == '*' ? 1 : 0;
 	while (form[i] >= '0' && form[i] <= '9')
 		if (form[1 + i++] == '.')
-			return (pad(list, form + 1) - 1);
+			return (checkzeropad(list, form, i, mode));
 	i = form[1] == '*' ? 2 : 1;
-	mode = form[1] == '*' ? 1 : 0;
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
