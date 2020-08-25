@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:42:49 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/22 16:23:25 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:56:35 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int	dotpadstr(va_list *list, int len)
 
 int	dotpadhexc(va_list *list, int len)
 {
-	int	nb;
-	int	ret;
+	unsigned int	nb;
+	int				ret;
 
-	nb = va_arg(*list, int);
+	nb = va_arg(*list, unsigned int);
 	ret = len > ft_numlen(nb, 16) ? len : ft_numlen(nb, 16);
 	while (len > ft_numlen(nb, 16))
 	{
@@ -71,10 +71,10 @@ int	dotpadhexc(va_list *list, int len)
 
 int	dotpadhex(va_list *list, int len)
 {
-	int	nb;
-	int	ret;
+	unsigned int	nb;
+	int				ret;
 
-	nb = va_arg(*list, int);
+	nb = va_arg(*list, unsigned int);
 	ret = len > ft_numlen(nb, 16) ? len : ft_numlen(nb, 16);
 	while (len > ft_numlen(nb, 16))
 	{
