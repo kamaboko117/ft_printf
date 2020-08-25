@@ -6,11 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:08:08 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 19:04:44 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 19:13:04 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	pdpshex(unsigned int nb, int len, int zl)
 {
@@ -96,7 +97,7 @@ int	pdphex(unsigned int nb, const char *f, int len, int mode)
 	j = 0;
 	while (j++ < zl - ft_numlen(nb, 16))
 		write(1, "0", 1);
-	if (ft_atoi(f) != 0)
+	if (!(ft_atoi(f) == 0 && nb == 0))
 		ft_putnbrbase_fd(nb, base, 1);
 	else
 		write(1, " ", 1);
