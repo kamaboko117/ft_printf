@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 18:48:45 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 17:10:15 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:48:46 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(void)
 	//char	*s = "nique ta race jo";
 	//int		x = 713752;
 	//char	*s_hidden = "hi low";
-	printf("[%d]\n", ft_printf("%020.*x0", -2, 133));
-	printf("[%d]\n", printf("%020.*x0", -2, 133));
+	printf("[%d]\n", printf("%%%.5X", 2147483647));
+	printf("[%d]\n", ft_printf("%%%.5X", 2147483647));
 //	while (1);
 	
 //	ft_printf("kamaboko117 %.10X kamaboko117\n", x);

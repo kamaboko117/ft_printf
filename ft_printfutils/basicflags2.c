@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:40:22 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/05 18:07:22 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:52:08 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	percent(va_list *list, const char *form)
 {
 	(void)list;
 	write(1, "%", 1);
-	if (form[1])
+	if (form[1] && form[1] != '%')
 	{
 		write(1, &form[1], 1);
 		return (1);

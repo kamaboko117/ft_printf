@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/12 15:45:19 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 17:52:28 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	checkpercent(const char *form, int tmp)
 	char	*str;
 	int		i;
 
-	str = "cspdiuxX-0.*123456789";
+	str = "cspdiuxX-0.*123456789%";
 	if (tmp == 21)
 	{
 		i = 0;
@@ -80,6 +80,13 @@ int	freetab(int (**f)(va_list *, const char*), int len, int i)
 	return (len + i);
 }
 
+int	freetabend(va_list *list, int (**f)(va_list *, const char*), int len, int i)
+{
+	va_end(*list);
+	free(f);
+	return (len + i);
+}
+
 int	ft_printf(const char *form, ...)
 {
 	int		(**f)(va_list *, const char *);
@@ -95,7 +102,7 @@ int	ft_printf(const char *form, ...)
 	while (form && form[++i])
 	{
 		if (i != 0 && form[i - 1] == '\0')
-			return (freetab(f, len, i - 1));
+			return (freetabend(&list, f, len, i - 1));
 		tmp = 0;
 		if (i != 0 && form[i - 1] == '%')
 		{
@@ -106,5 +113,5 @@ int	ft_printf(const char *form, ...)
 			write(1, &form[i], 1);
 		i += i == -1 ? 0 : checkcondition(form + i, tmp);
 	}
-	return (freetab(f, len, i));
+	return (freetabend(&list, f, len, i));
 }
