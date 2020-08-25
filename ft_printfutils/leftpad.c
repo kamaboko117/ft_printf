@@ -6,11 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/12 15:24:40 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:35:58 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	leftpad(va_list *list, const char *form)
 {
@@ -78,6 +79,7 @@ int	starleftpad(va_list *list, const char *form, int len, int tmp)
 	if (tmp == -1)
 		return (0);
 	f = tabinit();
+	printf("%d\n", tmp);
 	len -= (*f[tmp])(list, form + i);
 	freetab(f, 0, 0);
 	return (leftpadend(ret, i, len, form));

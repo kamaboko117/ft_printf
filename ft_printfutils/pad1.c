@@ -6,11 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:42:55 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/22 16:20:04 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:50:11 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	pad(va_list *list, const char *form)
 {

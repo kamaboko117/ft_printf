@@ -6,11 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 17:27:05 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 18:54:09 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	paddotpad(va_list *list, const char *form, int len)
 {
@@ -46,7 +47,7 @@ int	starleftpdp(va_list *list, const char *form, int len)
 	int dotlen;
 
 	dotlen = form[1] == '*' ? va_arg(*list, int) : ft_atoi(form + 1);
-	i = form[1] == '*' ? 2 : strnumlen(form + 1);
+	i = form[1] == '*' ? 2 : strnumlen(form + 1) + 1;
 	ret = len + 1;
 	tmp = find_index(form[i]);
 	if (tmp == 1)
