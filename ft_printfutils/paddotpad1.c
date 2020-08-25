@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 18:54:09 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/25 19:04:09 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ int	paddotpad(va_list *list, const char *form, int len)
 
 	i = strnumlen(form + 1);
 	tmp = find_index(form[i + 1]);
+
 	if (len < 0)
 		return (starleftpdp(list, form, -len));
 	if (tmp == 1)
 		return (paddotpadstr(list, form + i, len));
 	if (tmp == 2)
 		return (paddotpadptr(va_arg(*list, intptr_t), form + i, len) + 1);
-	if (tmp >= 3 && tmp <= 5)
+	if (tmp >= 3 && tmp <= 4)
 		return (paddotpaddec(va_arg(*list, int), form, len) - i + 1);
+	if (tmp == 5)
+		return (paddotpadu(va_arg(*list, unsigned int), form, len) - i + 1);
 	if (tmp == 6)
 		return (pdphex(va_arg(*list, unsigned int), form + i, len, 1) + 1);
 	if (tmp == 7)
