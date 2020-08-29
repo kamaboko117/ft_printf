@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 16:07:48 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:25:27 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	zeropad(va_list *list, const char *form)
 	while (form[i] >= '0' && form[i] <= '9')
 		i++;
 	tmp = find_index(form[i]);
-	return (zeropadend(list, form, tmp, mode));
+	return (zeropadend(list, form, tmp, mode) - i);
 }
 
 int	checkneg(va_list *list)
@@ -79,9 +79,9 @@ int	zeropadend(va_list *list, const char *form, int tmp, int mode)
 	if (tmp == 5)
 		return (zeropadnbru(mode, list, form));
 	if (tmp == 6)
-		return (zeropadhex(mode, list, form) - strnumlen(form));
+		return (zeropadhex(mode, list, form));
 	if (tmp == 7)
-		return (zeropadhexc(mode, list, form) - strnumlen(form));
+		return (zeropadhexc(mode, list, form));
 	return (0);
 }
 
@@ -98,14 +98,14 @@ int	zeropadnbru(int mode, va_list *list, const char *form)
 	if (len < 0)
 		return (starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, unsigned int);
-	ret = len - 1;
+	ret = len;
 	while (len-- > ft_numlen(nb, 10))
 		write(1, "0", 1);
 	ft_putnbru_fd(nb, 1);
-	if (ret >= ft_numlen(nb, 10) - 1)
-		return (ret - strnumlen(form + 1) - mode);
+	if (ret >= ft_numlen(nb, 10))
+		return (ret);
 	else
-		return (ft_numlen(nb, 10) - 1 - strnumlen(form + 1) - mode);
+		return (ft_numlen(nb, 10));
 }
 
 int	zeropadhex(int mode, va_list *list, const char *form)

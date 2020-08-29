@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:59:56 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/11 20:13:08 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:30:57 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	if (len < 0)
 		return (starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, int);
-	ret = len - 1;
+	ret = len;
 	i = 1;
 	if (nb < 0)
 	{
@@ -37,16 +37,16 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	}
 	while (len-- > ft_numlen(nb, 10))
 		write(1, "0", 1);
-	return (zeropaddecend(nb, ret, i) - strnumlen(form + 1) - mode);
+	return (zeropaddecend(nb, ret, i));
 }
 
 int	zeropaddecend(int nb, int ret, int i)
 {
 	ft_putnbr_fd(nb, 1);
-	if (ret >= ft_numlen(nb, 10) - i)
+	if (ret >= ft_numlen(nb, 10) - i + 1)
 		return (ret);
 	else
-		return (ft_numlen(nb, 10) - i);
+		return (ft_numlen(nb, 10) - i + 1);
 }
 
 int	zeropadpercent(int mode, va_list *list, const char *form)
