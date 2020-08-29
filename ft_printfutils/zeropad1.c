@@ -6,36 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 18:45:24 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:28:52 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 #include <stdio.h>
-
-int	checkzeropad(va_list *list, const char *form, int j, int mode)
-{
-	int 	size;
-	int		i;
-	int		tmp;
-	va_list copy;
-
-	i = 1;
-	va_copy(copy, *list);
-	if (form[1] == '*')
-		va_arg(copy, int);
-	size = form[j + 1] == '*' ? va_arg(copy, int) : ft_atoi(form);
-	va_end(copy);
-	if (size >= 0)
-		return (pad(list, form + 1) - 1);
-	mode = -1;
-	if (form[1] == '*')
-		mode = 2;
-	while (form[i + j + 1] >= '0' && form[i + j + 1] <= '9')
-		i++;
-	tmp = find_index(form[i + j + 1]);
-	return (zeropadend(list, form, tmp, mode) - (i + 1 + j));	
-}
 
 int	zeropad(va_list *list, const char *form)
 {
@@ -59,19 +35,6 @@ int	zeropad(va_list *list, const char *form)
 		i++;
 	tmp = find_index(form[i]);
 	return (zeropadend(list, form, tmp, mode) - i);
-}
-
-int	checkneg(va_list *list)
-{
-	va_list copy;
-	int		n;
-
-	va_copy(copy, *list);
-	n = va_arg(copy, int);
-	va_end(copy);
-	if (n < 0)
-		return (1);
-	return (0);
 }
 
 int	zeropadend(va_list *list, const char *form, int tmp, int mode)

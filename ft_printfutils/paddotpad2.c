@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:08:08 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 19:15:11 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:26:27 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,27 +135,4 @@ int	paddotpaddec(int nb, const char *form, int len)
 	if (len == 0 && nb == 0 && ft_atoi(form + 1) == 0)
 		return (-1);
 	return (i + zerolen + sign - strnumlen(form) - 2);
-}
-
-int	paddotpadu(unsigned int nb, const char *form, int len)
-{
-	int zerolen;
-	int i;
-	int j;
-
-	zerolen = ft_atoi(form + 1);
-	zerolen = zerolen < ft_numlen(nb, 10) ? ft_numlen(nb, 10) : zerolen;
-	i = 0;
-	while (i++ < len - zerolen)
-		write(1, " ", 1);
-	j = 0;
-	while (j++ < zerolen - ft_numlen(nb, 10))
-		write(1, "0", 1);
-	if (ft_atoi(form + 1) != 0 || nb != 0)
-		ft_putnbru_fd(nb, 1);
-	else if (len != 0)
-		write(1, " ", 1);
-	if (len == 0 && nb == 0 && ft_atoi(form + 1) == 0)
-		return (-1);
-	return (i + zerolen - strnumlen(form) - 2);
 }

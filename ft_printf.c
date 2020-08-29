@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:54:47 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 17:52:28 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:21:57 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,6 @@ int	checkcondition(const char *form, int tmp)
 		i++;
 	}
 	return (i);
-}
-
-int	freetab(int (**f)(va_list *, const char*), int len, int i)
-{
-	free(f);
-	return (len + i);
 }
 
 int	freetabend(va_list *list, int (**f)(va_list *, const char*), int len, int i)

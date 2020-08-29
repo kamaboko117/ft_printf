@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:39:24 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/12 15:45:58 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:21:51 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ int	ft_putmaxstr(const char *s, int len)
 	if (tmp <= len)
 		return (tmp);
 	return (len);
+}
+
+int	freetab(int (**f)(va_list *, const char*), int len, int i)
+{
+	free(f);
+	return (len + i);
 }

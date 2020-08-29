@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 16:06:01 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:24:51 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	leftpad(va_list *list, const char *form)
 		i++;
 	if ((tmp = find_index(form[i])) == -1)
 		return (0);
-
 	if (tmp == 21)
 		return (leftpadpercent(len, i, form));
 	f = tabinit();
