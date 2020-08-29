@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 18:23:32 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:45:24 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 	int				len;
 	int				ret;
 
-	if (mode == 1)
+	if (mode >= 1)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);

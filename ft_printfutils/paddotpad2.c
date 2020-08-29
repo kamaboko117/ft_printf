@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:08:08 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 19:13:04 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:41:33 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ int	pdphex(unsigned int nb, const char *f, int len, int mode)
 		write(1, "0", 1);
 	if (!(ft_atoi(f) == 0 && nb == 0))
 		ft_putnbrbase_fd(nb, base, 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && ft_atoi(f) == 0)
+		return (-2);
 	return (i + zl - strnumlen(f) - 2);
 }
 
