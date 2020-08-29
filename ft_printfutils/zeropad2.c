@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:59:56 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 16:30:57 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:04:01 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ int	zeropaddec(int mode, va_list *list, const char *form)
 	int	ret;
 	int	i;
 
-	if (mode == 1)
+	if (mode >= 1)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (mode == 2)
+		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, int);

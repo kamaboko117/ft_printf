@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 16:59:22 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:06:21 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@ int	checkzeropad(va_list *list, const char *form, int j, int mode)
 
 	i = 1;
 	va_copy(copy, *list);
+	if (form[1] == '*')
+		va_arg(copy, int);
 	size = form[j + 1] == '*' ? va_arg(copy, int) : ft_atoi(form);
 	va_end(copy);
 	if (size >= 0)
 		return (pad(list, form + 1) - 1);
-	va_arg(*list, int);
+	if (form[1] == '*')
+		mode = 2;
 	while (form[i + j + 1] >= '0' && form[i + j + 1] <= '9')
 		i++;
 	tmp = find_index(form[i + j + 1]);
@@ -114,10 +117,12 @@ int	zeropadhex(int mode, va_list *list, const char *form)
 	int				len;
 	int				ret;
 
-	if (mode == 1)
+	if (mode >= 1)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (mode == 2)
+		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 6) - 1);
 	nb = va_arg(*list, unsigned int);
@@ -141,6 +146,8 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (mode == 2)
+		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 7) - 1);
 	nb = va_arg(*list, unsigned int);
