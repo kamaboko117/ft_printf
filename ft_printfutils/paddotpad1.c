@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 19:04:09 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:44:11 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	paddotpad(va_list *list, const char *form, int len)
 
 	i = strnumlen(form + 1);
 	tmp = find_index(form[i + 1]);
-
 	if (len < 0)
 		return (starleftpdp(list, form, -len));
 	if (tmp == 1)
@@ -77,8 +76,10 @@ int	pdpstar(va_list *list, const char *form, int len)
 	tmp = find_index(form[1]);
 	if (tmp == 1)
 		return (pdpsstr(list, len, dl) - 1);
-	if (tmp >= 3 && tmp <= 5)
+	if (tmp >= 3 && tmp <= 4)
 		return (pdpsdec(va_arg(*list, int), len, dl));
+	if (tmp == 5)
+		return (pdpsu(va_arg(*list, unsigned int), len, dl));
 	if (tmp == 6)
 		return (pdpshex(va_arg(*list, unsigned int), len, dl));
 	if (tmp == 7)
@@ -138,4 +139,25 @@ int	pdpsdec(int nb, int len, int zl)
 	else
 		write(1, " ", 1);
 	return (i + zl + sign - 2);
+}
+
+int	pdpsu(unsigned int nb, int len, int zl)
+{
+	int i;
+	int j;
+	int	oldzl;
+
+	oldzl = zl;
+	zl = zl < ft_numlen(nb, 10) ? ft_numlen(nb, 10) : zl;
+	i = 0;
+	while (i++ < len - zl)
+		write(1, " ", 1);
+	j = 0;
+	while (j++ < zl - ft_numlen(nb, 10))
+		write(1, "0", 1);
+	if (oldzl != 0 || nb != 0)
+		ft_putnbru_fd(nb, 1);
+	else
+		write(1, " ", 1);
+	return (i + zl - 2);
 }
