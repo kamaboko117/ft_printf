@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:55:10 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 18:35:58 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:06:01 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	leftpad(va_list *list, const char *form)
 		i++;
 	if ((tmp = find_index(form[i])) == -1)
 		return (0);
+
 	if (tmp == 21)
 		return (leftpadpercent(len, i, form));
 	f = tabinit();
@@ -79,7 +80,6 @@ int	starleftpad(va_list *list, const char *form, int len, int tmp)
 	if (tmp == -1)
 		return (0);
 	f = tabinit();
-	printf("%d\n", tmp);
 	len -= (*f[tmp])(list, form + i);
 	freetab(f, 0, 0);
 	return (leftpadend(ret, i, len, form));

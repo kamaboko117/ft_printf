@@ -6,11 +6,12 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 20:55:15 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 17:31:55 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 15:58:35 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+#include <stdio.h>
 
 int	dotpadnbr(va_list *list, int len)
 {

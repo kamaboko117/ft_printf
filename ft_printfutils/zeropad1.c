@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 18:38:27 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 16:07:48 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	zeropad(va_list *list, const char *form)
 	if (form[1] == '-')
 		return (leftpad(list, form + 1) - 1);
 	mode = form[1] == '*' ? 1 : 0;
+	if (mode == 1 && checkneg(list))
+		return (leftpad(list, form));
 	while ((form[i] >= '0' && form[i] <= '9') || form[i] == '*')
 		if (form[1 + i++] == '.')
 			return (checkzeropad(list, form, i, mode));
@@ -53,6 +55,19 @@ int	zeropad(va_list *list, const char *form)
 		i++;
 	tmp = find_index(form[i]);
 	return (zeropadend(list, form, tmp, mode));
+}
+
+int	checkneg(va_list *list)
+{
+	va_list copy;
+	int		n;
+
+	va_copy(copy, *list);
+	n = va_arg(copy, int);
+	va_end(copy);
+	if (n < 0)
+		return (1);
+	return (0);
 }
 
 int	zeropadend(va_list *list, const char *form, int tmp, int mode)

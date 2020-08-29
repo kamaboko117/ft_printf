@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:47:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/25 19:01:55 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 15:35:03 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ int			freetabend(va_list *list, int (**f)(va_list *, const char*), int len, int 
 int			freetab(int (**f)(va_list *, const char*), int len, int i);
 int			checkzeropad(va_list *list, const char *form, int j, int mode);
 int			paddotpadu(unsigned int nb, const char *form, int len);
+int			checkneg(va_list *list);
 #endif
