@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 20:08:08 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 18:41:33 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:15:11 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	pdpshex(unsigned int nb, int len, int zl)
 		write(1, "0", 1);
 	if (oldzl != 0 || nb != 0)
 		ft_putnbrbase_fd(nb, "0123456789abcdef", 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && oldzl == 0)
+		return (-1);
 	return (i + zl - 2);
 }
 
@@ -128,8 +130,10 @@ int	paddotpaddec(int nb, const char *form, int len)
 		write(1, "0", 1);
 	if (ft_atoi(form + 1) != 0 || nb != 0)
 		ft_putnbr_fd(nb, 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && ft_atoi(form + 1) == 0)
+		return (-1);
 	return (i + zerolen + sign - strnumlen(form) - 2);
 }
 
@@ -149,7 +153,9 @@ int	paddotpadu(unsigned int nb, const char *form, int len)
 		write(1, "0", 1);
 	if (ft_atoi(form + 1) != 0 || nb != 0)
 		ft_putnbru_fd(nb, 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && ft_atoi(form + 1) == 0)
+		return (-1);
 	return (i + zerolen - strnumlen(form) - 2);
 }

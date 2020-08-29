@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/05 17:52:40 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 16:44:11 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 19:05:37 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,10 @@ int	pdpsdec(int nb, int len, int zl)
 		write(1, "0", 1);
 	if (oldzl != 0 || nb != 0)
 		ft_putnbr_fd(nb, 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && oldzl == 0)
+		return (-1);
 	return (i + zl + sign - 2);
 }
 
@@ -157,7 +159,9 @@ int	pdpsu(unsigned int nb, int len, int zl)
 		write(1, "0", 1);
 	if (oldzl != 0 || nb != 0)
 		ft_putnbru_fd(nb, 1);
-	else
+	else if (len != 0)
 		write(1, " ", 1);
+	if (len == 0 && nb == 0 && oldzl == 0)
+		return (-1);
 	return (i + zl - 2);
 }
