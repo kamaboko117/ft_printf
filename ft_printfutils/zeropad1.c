@@ -6,7 +6,7 @@
 /*   By: asaboure <asaboure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 21:03:44 by asaboure          #+#    #+#             */
-/*   Updated: 2020/08/29 18:06:21 by asaboure         ###   ########.fr       */
+/*   Updated: 2020/08/29 18:23:32 by asaboure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	checkzeropad(va_list *list, const char *form, int j, int mode)
 	va_end(copy);
 	if (size >= 0)
 		return (pad(list, form + 1) - 1);
+	mode = -1;
 	if (form[1] == '*')
 		mode = 2;
 	while (form[i + j + 1] >= '0' && form[i + j + 1] <= '9')
@@ -94,10 +95,12 @@ int	zeropadnbru(int mode, va_list *list, const char *form)
 	int				len;
 	int				ret;
 
-	if (mode == 1)
+	if (mode >= 1)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
+	if (mode == 2 || mode == -1)
+		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 3) - 1);
 	nb = va_arg(*list, unsigned int);
@@ -121,7 +124,7 @@ int	zeropadhex(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
-	if (mode == 2)
+	if (mode == 2 || mode == -1)
 		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 6) - 1);
@@ -146,7 +149,7 @@ int	zeropadhexc(int mode, va_list *list, const char *form)
 		len = va_arg(*list, int);
 	else
 		len = ft_atoi(form + 1);
-	if (mode == 2)
+	if (mode == 2 || mode == -1)
 		va_arg(*list, int);
 	if (len < 0)
 		return (starleftpad(list, form, -len, 7) - 1);
