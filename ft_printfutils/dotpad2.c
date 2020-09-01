@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdio.h>
 
 int	dotpadnbr(va_list *list, int len)
 {

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdio.h>
 
 int	pdpshex(unsigned int nb, int len, int zl)
 {

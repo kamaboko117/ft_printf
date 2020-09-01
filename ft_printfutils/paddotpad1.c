@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-#include <stdio.h>
 
 int	paddotpad(va_list *list, const char *form, int len)
 {
