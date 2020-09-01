@@ -46,7 +46,7 @@ int	dotpadstr(va_list *list, int len)
 	str = va_arg(*list, char*);
 	if (str == NULL && len < 0)
 		return (ft_putmaxstr("(null)", 6));
-	len = len < 0 ? ft_strlen(str) : len;
+	len = len < 0 ? (int)ft_strlen(str) : len;
 	if (str == NULL)
 		return (ft_putmaxstr("(null)", len));
 	return (ft_putmaxstr(str, len));

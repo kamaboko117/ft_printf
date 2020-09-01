@@ -67,7 +67,5 @@ int	nbru(va_list *list, const char *form)
 	(void)form;
 	nbr = va_arg(*list, unsigned int);
 	ft_putnbru_fd(nbr, 1);
-	if (nbr < 0)
-		return (ft_numlen(nbr, 10) + 1);
 	return (ft_numlen(nbr, 10));
 }
